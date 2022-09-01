@@ -6,6 +6,7 @@ const nextConfig = {
     scrollRestoration: true,
     images: {
       allowFutureImage: true,
+      domains: ['images.unsplash.com'],
     },
   },
 }
