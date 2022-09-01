@@ -10,3 +10,13 @@ export const validateSignIn = (values) => {
   }
   return errors
 }
+
+export const validateSMSCode = (values) => {
+  const errors = {}
+
+  if (!values.code) {
+    errors.code = 'Please make sure you enter the 6 digit code'
+  }
+
+  return errors
+}

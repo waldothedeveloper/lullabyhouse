@@ -2,7 +2,7 @@ import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
 import Image from 'next/future/image'
 import backgroundImage from '@/images/background.jpg'
-import herobg from '@/images/bg_hero-4.jpeg'
+// import herobg from '@/images/bg_hero-4.jpeg'
 
 export function Hero() {
   return (
@@ -33,7 +33,7 @@ export function Hero() {
             </p>
           </div>
           <Button href="#" className="mt-10 w-full sm:hidden">
-            Clean your house
+            Clean my house
           </Button>
           <dl className="mt-10 grid grid-cols-2 gap-y-6 gap-x-10 sm:mt-16 sm:gap-y-10 sm:gap-x-16 sm:text-center lg:auto-cols-auto lg:grid-flow-col lg:grid-cols-none lg:justify-start lg:text-left">
             {[

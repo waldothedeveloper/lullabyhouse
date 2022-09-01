@@ -24,7 +24,7 @@ export function Header() {
           </div>
         </div>
         <div className="hidden sm:mt-10 sm:flex lg:mt-0 lg:grow lg:basis-0 lg:justify-end">
-          <Button href="/sign_up">Sign Up</Button>
+          <Button href="/auth/sign_in_or_create_account">Clean my house</Button>
         </div>
       </Container>
     </header>
