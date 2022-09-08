@@ -2,15 +2,15 @@ import 'focus-visible'
 import '@/styles/tailwind.css'
 
 import { OnlineStatusProvider } from '@/components/providers/OnlineStatus'
-import { ProvideAuth } from '@/hooks/auth/useAuth'
+import { UserProvider } from '@auth0/nextjs-auth0'
 
 //
 export default function App({ Component, pageProps }) {
   return (
     <OnlineStatusProvider>
-      <ProvideAuth>
+      <UserProvider>
         <Component {...pageProps} />
-      </ProvideAuth>
+      </UserProvider>
     </OnlineStatusProvider>
   )
 }

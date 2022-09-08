@@ -2,9 +2,11 @@ import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
 import Image from 'next/future/image'
 import backgroundImage from '@/images/background.jpg'
-// import herobg from '@/images/bg_hero-4.jpeg'
+import { checkRedirectURL } from '@/utils/checkRedirectURL'
+import { useUser } from '@auth0/nextjs-auth0'
 
 export function Hero() {
+  const { user } = useUser()
   return (
     <div className="relative pt-10 pb-20 sm:py-24">
       <div className="absolute inset-x-0 -top-48 -bottom-14 overflow-hidden bg-indigo-50">
@@ -32,8 +34,11 @@ export function Hero() {
               from the comfort of your home or office.
             </p>
           </div>
-          <Button href="#" className="mt-10 w-full sm:hidden">
-            Clean my house
+          <Button
+            href={checkRedirectURL(user)}
+            className="mt-10 w-full sm:hidden"
+          >
+            Sign Up or LogIn
           </Button>
           <dl className="mt-10 grid grid-cols-2 gap-y-6 gap-x-10 sm:mt-16 sm:gap-y-10 sm:gap-x-16 sm:text-center lg:auto-cols-auto lg:grid-flow-col lg:grid-cols-none lg:justify-start lg:text-left">
             {[

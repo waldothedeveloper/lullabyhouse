@@ -1,9 +1,14 @@
 import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
 import Image from 'next/future/image'
+import { checkRedirectURL } from '@/utils/checkRedirectURL'
 import logo from '@/images/lulhouse.png'
+import { useUser } from '@auth0/nextjs-auth0'
 
+//
 export function Header() {
+  const { user } = useUser()
+
   return (
     <header className="relative z-50 pb-11">
       <Container className="flex flex-wrap items-center justify-center sm:justify-between lg:flex-nowrap">
@@ -12,8 +17,6 @@ export function Header() {
             src={logo}
             alt="Lullaby house logo"
             placeholder="blur"
-            // width={200}
-            // height={200}
             priority
             layout="responsive"
           />
@@ -24,7 +27,7 @@ export function Header() {
           </div>
         </div>
         <div className="hidden sm:mt-10 sm:flex lg:mt-0 lg:grow lg:basis-0 lg:justify-end">
-          <Button href="/auth/sign_in_or_create_account">Clean my house</Button>
+          <Button href={checkRedirectURL(user)}>Sign Up or LogIn</Button>
         </div>
       </Container>
     </header>

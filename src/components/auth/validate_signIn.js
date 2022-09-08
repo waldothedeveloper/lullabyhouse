@@ -1,22 +1,13 @@
-import { validatePhoneRegex } from '@/utils/regex'
+const emailRegex = new RegExp(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/)
 
+//
 export const validateSignIn = (values) => {
   // console.log('values: ', values)
   const errors = {}
-  if (!values.phone) {
-    errors.phone = 'A valid phone number is required'
-  } else if (!validatePhoneRegex.test(values.phone)) {
-    errors.phone = 'Invalid or imcomplete phone number'
+  if (!values.email) {
+    errors.email = 'A valid email address is required'
+  } else if (!emailRegex.test(values.email)) {
+    errors.email = 'Invalid or imcomplete email address'
   }
-  return errors
-}
-
-export const validateSMSCode = (values) => {
-  const errors = {}
-
-  if (!values.code) {
-    errors.code = 'Please make sure you enter the 6 digit code'
-  }
-
   return errors
 }
