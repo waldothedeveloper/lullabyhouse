@@ -5,62 +5,55 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
+import { useUser, withPageAuthRequired } from '@auth0/nextjs-auth0'
 
-import { Error } from '@/components/Error'
+// import { Error } from '@/components/Error'
 import { Fragment } from 'react'
 import Image from 'next/image'
-import { Loader } from '@/components/Loader'
+// import { Loader } from '@/components/Loader'
 import { OfflineApp } from '@/components/Offline'
 import { classNames } from '@/utils/classNames'
 import logo from '@/images/logo.png'
+import { navigation } from '@/utils/navigation'
+import { useEffect } from 'react'
 import { useOnlineStatus } from '@/hooks/useOnlineStatus'
-import { useRequireAuth } from '@/hooks/auth/useRequireAuth'
+import { useRouter } from 'next/router'
 import userPhoto from '@/images/user.jpg'
 
 //
-const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
-  { name: 'Team', href: '#', current: false },
-  { name: 'Projects', href: '#', current: false },
-  { name: 'Calendar', href: '#', current: false },
-  { name: 'Reports', href: '#', current: false },
-]
 
-// Note that this is a higher-order function.
+const userTwo = {
+  name: 'Tom Cook',
+  email: 'tom@example.com',
+  imageUrl: userPhoto,
+}
 
+export const getServerSideProps = withPageAuthRequired()
+//
 function UserAccount() {
-  const { auth, error } = useRequireAuth()
-  const { user, logOut } = auth
-  console.log('user: ', user)
+  const router = useRouter()
   const onlineStatus = useOnlineStatus()
+  const { user } = useUser()
 
-  const userTwo = {
-    name: 'Tom Cook',
-    email: 'tom@example.com',
-    imageUrl: userPhoto,
-  }
+  useEffect(() => {
+    if (user && user?.sid) {
+      router.push(`/user/account?id=${user?.sid}`, undefined, { shallow: true })
+    }
+    // eslint-disable-next-line
+  }, [user])
 
+  //
   const userNavigation = [
     { name: 'Your Profile', href: '#' },
     { name: 'Settings', href: '#' },
-    { name: 'Sign out', fn: logOut },
+    { name: 'Sign out', href: `/api/auth/logout` },
   ]
 
   if (!onlineStatus) {
     return <OfflineApp />
   }
 
-  if (!user) {
-    return <Loader />
-  }
-
-  if (error) {
-    return <Error error={error} />
-  }
-
-  return user?.loading ? (
-    <Loader />
-  ) : (
+  return (
     <>
       <div className="min-h-full">
         <div className="bg-blue-600 pb-32">
@@ -177,29 +170,17 @@ function UserAccount() {
                             <Menu.Items className="absolute right-0 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                               {userNavigation.map((item) => (
                                 <Menu.Item key={item.name}>
-                                  {({ active }) =>
-                                    item.href ? (
-                                      <a
-                                        href={item.href}
-                                        className={classNames(
-                                          active ? 'bg-gray-100' : '',
-                                          'block py-2 px-4 text-sm text-gray-700'
-                                        )}
-                                      >
-                                        {item.name}
-                                      </a>
-                                    ) : (
-                                      <button
-                                        onClick={item.fn}
-                                        className={classNames(
-                                          active ? 'bg-gray-100' : '',
-                                          'block w-full py-2 px-4 text-left text-sm text-gray-700'
-                                        )}
-                                      >
-                                        {item.name}
-                                      </button>
-                                    )
-                                  }
+                                  {({ active }) => (
+                                    <a
+                                      href={item.href}
+                                      className={classNames(
+                                        active ? 'bg-gray-100' : '',
+                                        'block py-2 px-4 text-sm text-gray-700'
+                                      )}
+                                    >
+                                      {item.name}
+                                    </a>
+                                  )}
                                 </Menu.Item>
                               ))}
                             </Menu.Items>
