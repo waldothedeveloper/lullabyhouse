@@ -10,6 +10,6 @@ export function Button({ href, className, ...props }) {
   return href ? (
     <Link href={href} className={className} {...props} />
   ) : (
-    <button className={className} {...props} />
+    <button type="button" className={className} {...props} />
   )
 }
