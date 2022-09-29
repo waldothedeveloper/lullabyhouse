@@ -3,7 +3,11 @@ const defaultTheme = require('tailwindcss/defaultTheme')
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./src/**/*.{js,jsx}'],
+  darkMode: 'class',
   theme: {
+    corePlugins: {
+      aspectRatio: false,
+    },
     fontSize: {
       xs: ['0.75rem', { lineHeight: '1rem' }],
       sm: ['0.875rem', { lineHeight: '1.5rem' }],
@@ -20,6 +24,22 @@ module.exports = {
       '9xl': ['8rem', { lineHeight: '1' }],
     },
     extend: {
+      animation: {
+        tilt: 'tilt 10s infinite linear',
+      },
+      keyframes: {
+        tilt: {
+          '0%, 50%, 100%': {
+            transform: 'rotate(0deg)',
+          },
+          '25%': {
+            transform: 'rotate(0.5deg)',
+          },
+          '75%': {
+            transform: 'rotate(-0.5deg)',
+          },
+        },
+      },
       borderRadius: {
         '4xl': '2rem',
         '5xl': '2.5rem',
@@ -33,5 +53,10 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/aspect-ratio'),
+    require('@tailwindcss/line-clamp'),
+  ],
 }

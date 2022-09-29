@@ -1,12 +1,10 @@
-import { Footer } from '@/components/Footer'
+import { CallToAction } from '@/components/CallToAction'
+import { Features } from '@/components/Features'
 import Head from 'next/head'
-import { Header } from '@/components/Header'
 import { Hero } from '@/components/Hero'
-import { Newsletter } from '@/components/Newsletter'
-import { Schedule } from '@/components/Schedule'
-import { Speakers } from '@/components/Speakers'
-import { Sponsors } from '@/components/Sponsors'
+import { Testimonials } from '@/components/Testimonials'
 
+//
 export default function Home() {
   return (
     <>
@@ -17,15 +15,13 @@ export default function Home() {
           content="At Lullaby House, we provide a wide range of cleaning services to help you keep your home clean and tidy."
         />
       </Head>
-      <Header />
+
       <main>
         <Hero />
-        <Speakers />
-        <Schedule />
-        <Sponsors />
-        <Newsletter />
+        <Features />
+        <CallToAction />
+        <Testimonials />
       </main>
-      <Footer />
     </>
   )
 }

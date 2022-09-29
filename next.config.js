@@ -6,6 +6,13 @@ const nextConfig = {
     scrollRestoration: true,
     images: {
       allowFutureImage: true,
+      domains: ['images.unsplash.com'],
+      remotePatterns: [
+        {
+          protocol: 'https',
+          hostname: '**.images.unsplash.com',
+        },
+      ],
     },
   },
 }
