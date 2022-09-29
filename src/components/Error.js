@@ -10,11 +10,11 @@ export const Error = ({ error }) => {
             {error.code}
           </p>
           <div className="sm:ml-6">
-            <div className="sm:border-l sm:border-gray-200 sm:pl-6">
-              <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
+            <div className="sm:border-l sm:border-slate-200 sm:pl-6">
+              <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
                 {error.error}
               </h1>
-              <p className="mt-1 text-base text-gray-500">{error.message}</p>
+              <p className="mt-1 text-base text-slate-500">{error.message}</p>
             </div>
             <div className="mt-10 flex space-x-3 sm:border-l sm:border-transparent sm:pl-6">
               <a

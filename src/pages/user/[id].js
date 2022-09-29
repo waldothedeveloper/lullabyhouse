@@ -98,7 +98,7 @@ function UserAccount() {
                         <label htmlFor="search" className="sr-only">
                           Search
                         </label>
-                        <div className="relative text-gray-400 focus-within:text-gray-600">
+                        <div className="relative text-slate-400 focus-within:text-slate-600">
                           <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                             <MagnifyingGlassIcon
                               className="h-5 w-5"
@@ -107,7 +107,7 @@ function UserAccount() {
                           </div>
                           <input
                             id="search"
-                            className="block w-full rounded-md border border-transparent bg-white py-2 pl-10 pr-3 leading-5 text-gray-900 placeholder-gray-500 focus:border-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-rose-600 sm:text-sm"
+                            className="block w-full rounded-md border border-transparent bg-white py-2 pl-10 pr-3 leading-5 text-slate-900 placeholder-slate-500 focus:border-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-rose-600 sm:text-sm"
                             placeholder="Search"
                             type="search"
                             name="search"
@@ -172,8 +172,8 @@ function UserAccount() {
                                     <a
                                       href={item.href}
                                       className={classNames(
-                                        active ? 'bg-gray-100' : '',
-                                        'block py-2 px-4 text-sm text-gray-700'
+                                        active ? 'bg-slate-100' : '',
+                                        'block py-2 px-4 text-sm text-slate-700'
                                       )}
                                     >
                                       {item.name}
@@ -264,7 +264,7 @@ function UserAccount() {
         <main className="-mt-32">
           <div className="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
             <div className="rounded-lg bg-white px-5 py-6 shadow sm:px-6">
-              <div className="h-96 rounded-lg border-4 border-dashed border-gray-200" />
+              <div className="h-96 rounded-lg border-4 border-dashed border-slate-200" />
             </div>
           </div>
         </main>

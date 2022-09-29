@@ -49,37 +49,31 @@ export const Header = () => {
 
                 <div className="hidden md:ml-6 md:flex md:space-x-8">
                   <Link
-                    href="#"
+                    href="/pricing"
                     className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-semibold text-slate-500 hover:border-slate-300 hover:text-slate-700 dark:text-white"
                   >
                     Pricing
                   </Link>
                   <Link
-                    href="#"
-                    className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-semibold text-slate-500 hover:border-slate-300 hover:text-slate-700 dark:text-white"
-                  >
-                    About
-                  </Link>
-                  <Link
-                    href="#"
+                    href="/faqs"
                     className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-semibold text-slate-500 hover:border-slate-300 hover:text-slate-700 dark:text-white"
                   >
                     FAQ&apos;s
                   </Link>
                   <Link
-                    href="#"
+                    href="/careers"
                     className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-semibold text-slate-500 hover:border-slate-300 hover:text-slate-700 dark:text-white"
                   >
-                    Testimonials
+                    Careers
                   </Link>
                   <Link
-                    href="#"
+                    href="service_area"
                     className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-semibold text-slate-500 hover:border-slate-300 hover:text-slate-700 dark:text-white"
                   >
                     Service Area
                   </Link>
                   <Link
-                    href="#"
+                    href="contact"
                     className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-semibold text-slate-500 hover:border-slate-300 hover:text-slate-700 dark:text-white"
                   >
                     Contact

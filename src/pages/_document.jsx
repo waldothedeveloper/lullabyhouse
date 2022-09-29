@@ -1,5 +1,8 @@
 import { Head, Html, Main, NextScript } from 'next/document'
 
+import Script from 'next/script'
+
+//
 export default function Document() {
   return (
     <Html className="h-full antialiased" lang="en">
@@ -18,7 +21,16 @@ export default function Document() {
       <body className="h-full">
         <Main />
         <NextScript />
+        <Script
+          src="//code.tidio.co/wiwd8tuym33ob9lfloqo8obi4iutqt4y.js"
+          strategy="lazyOnload"
+        />
       </body>
     </Html>
   )
 }
+
+// ;<script
+//   src="//code.tidio.co/wiwd8tuym33ob9lfloqo8obi4iutqt4y.js"
+//   async
+// ></script>

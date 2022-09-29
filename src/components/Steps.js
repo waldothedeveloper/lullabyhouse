@@ -20,7 +20,7 @@ export const Steps = () => {
                     {step.number}
                   </div>
                 </div>
-                <p className="ml-3 w-full text-sm font-medium text-gray-900">
+                <p className="ml-3 w-full text-sm font-medium text-slate-900">
                   {step.name}
                 </p>
               </div>

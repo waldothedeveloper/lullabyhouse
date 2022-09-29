@@ -30,7 +30,7 @@ export const Features = () => {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-xs text-center md:max-w-lg lg:max-w-xl">
           <h2 className="text-3xl font-semibold tracking-tight text-slate-800 dark:text-white sm:text-4xl lg:text-5xl">
-            The Thrill of a Clean House
+            The Thrill of a Clean House 💖
           </h2>
           <p className="mt-4 text-base font-normal leading-7 text-slate-600 dark:text-slate-400 lg:mt-20 lg:text-lg lg:leading-8">
             Lullaby House offers deep cleaning, move in-out, and regular

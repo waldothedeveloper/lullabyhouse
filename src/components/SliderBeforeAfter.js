@@ -16,7 +16,7 @@ export const SliderBeforeAfter = ({ aspectRatio, orientation, value }) => {
         <Image
           src={img1}
           layout="fill"
-          className="w-full object-cover grayscale"
+          className="slatescale w-full object-cover"
           priority
           alt="tired couple cleaning their home before knowing about Lullaby House cleaning crew"
         />
