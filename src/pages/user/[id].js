@@ -5,15 +5,14 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
+import { Fragment, useEffect } from 'react'
 import { useUser, withPageAuthRequired } from '@auth0/nextjs-auth0'
 
-import { Fragment } from 'react'
 import Image from 'next/image'
 import { OfflineApp } from '@/components/Offline'
 import { classNames } from '@/utils/classNames'
 import logo from '@/images/logo.png'
 import { navigation } from '@/utils/navigation'
-import { useEffect } from 'react'
 import { useOnlineStatus } from '@/hooks/useOnlineStatus'
 import { useRouter } from 'next/router'
 import userPhoto from '@/images/user.jpg'

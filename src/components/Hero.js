@@ -1,5 +1,3 @@
-import { useEffect, useState } from 'react'
-
 import { BlurryColoredBg } from '@/components/BlurryColoredBg'
 import Link from 'next/link'
 import { PlayIcon } from '@heroicons/react/20/solid'

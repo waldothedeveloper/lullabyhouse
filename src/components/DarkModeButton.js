@@ -20,9 +20,6 @@ export const DarkModeButton = () => {
           if (prevState) {
             setTheme('light')
             return false
-          } else {
-            setTheme('dark')
-            return true
           }
         })
       }}
