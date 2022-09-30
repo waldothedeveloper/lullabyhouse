@@ -2,10 +2,12 @@ import { createContext, useEffect, useState } from 'react'
 
 export const OnlineStatusContext = createContext(null)
 
-const getOnLineStatus = () =>
-  typeof navigator !== 'undefined' && typeof navigator.onLine === 'boolean'
+const getOnLineStatus = () => {
+  return typeof navigator !== 'undefined' &&
+    typeof navigator.onLine === 'boolean'
     ? navigator.onLine
     : true
+}
 
 //
 export const OnlineStatusProvider = ({ children }) => {

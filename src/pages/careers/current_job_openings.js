@@ -34,9 +34,9 @@ export default function OpenPosition() {
             A rewarding career is just steps away
           </h2>
           <p className="mt-3 text-xl text-slate-500 dark:text-slate-400 sm:mt-4">
-            We are a full-service residential and commercial cleaning company
-            founded in 2022 in the heart of Miami, Florida. We offer
-            fully-qualified staff and a top-notch customer service.
+            We are a full-service residential cleaning company founded in 2022
+            in the heart of Miami, Florida. We offer fully-qualified staff and a
+            top-notch customer service.
           </p>
         </div>
         <div className="mt-12 grid gap-16 pt-12 lg:grid-cols-3 lg:gap-x-5 lg:gap-y-12">
