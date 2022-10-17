@@ -53,15 +53,15 @@ function UserAccount() {
   return (
     <>
       <div className="min-h-full">
-        <div className="bg-teal-600 pb-32">
+        <div className="bg-rose-600 pb-32">
           <Disclosure
             as="nav"
-            className="border-b border-teal-300 border-opacity-25 bg-teal-600 lg:border-none"
+            className="border-b border-rose-300 border-opacity-25 bg-rose-600 lg:border-none"
           >
             {({ open }) => (
               <>
                 <div className="mx-auto max-w-7xl px-2 sm:px-4 lg:px-8">
-                  <div className="relative flex h-16 items-center justify-between lg:border-b lg:border-teal-400 lg:border-opacity-25">
+                  <div className="relative flex h-16 items-center justify-between lg:border-b lg:border-rose-400 lg:border-opacity-25">
                     <div className="flex items-center px-2 lg:px-0">
                       <div className="flex-shrink-0">
                         <Image
@@ -80,8 +80,8 @@ function UserAccount() {
                               href={item.href}
                               className={classNames(
                                 item.current
-                                  ? 'bg-teal-700 text-white'
-                                  : 'text-white hover:bg-teal-500 hover:bg-opacity-75',
+                                  ? 'bg-rose-700 text-white'
+                                  : 'text-white hover:bg-rose-500 hover:bg-opacity-75',
                                 'rounded-md py-2 px-3 text-sm font-medium'
                               )}
                               aria-current={item.current ? 'page' : undefined}
@@ -106,7 +106,7 @@ function UserAccount() {
                           </div>
                           <input
                             id="search"
-                            className="block w-full rounded-md border border-transparent bg-white py-2 pl-10 pr-3 leading-5 text-slate-900 placeholder-slate-500 focus:border-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-teal-600 sm:text-sm"
+                            className="block w-full rounded-md border border-transparent bg-white py-2 pl-10 pr-3 leading-5 text-slate-900 placeholder-slate-500 focus:border-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-rose-600 sm:text-sm"
                             placeholder="Search"
                             type="search"
                             name="search"
@@ -116,7 +116,7 @@ function UserAccount() {
                     </div>
                     <div className="flex lg:hidden">
                       {/* Mobile menu button */}
-                      <Disclosure.Button className="inline-flex items-center justify-center rounded-md bg-teal-600 p-2 text-teal-200 hover:bg-teal-500 hover:bg-opacity-75 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-teal-600">
+                      <Disclosure.Button className="inline-flex items-center justify-center rounded-md bg-rose-600 p-2 text-rose-200 hover:bg-rose-500 hover:bg-opacity-75 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-rose-600">
                         <span className="sr-only">Open main menu</span>
                         {open ? (
                           <XMarkIcon
@@ -135,7 +135,7 @@ function UserAccount() {
                       <div className="flex items-center">
                         <button
                           type="button"
-                          className="flex-shrink-0 rounded-full bg-teal-600 p-1 text-teal-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-teal-600"
+                          className="flex-shrink-0 rounded-full bg-rose-600 p-1 text-rose-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-rose-600"
                         >
                           <span className="sr-only">View notifications</span>
                           <BellIcon className="h-6 w-6" aria-hidden="true" />
@@ -144,7 +144,7 @@ function UserAccount() {
                         {/* Profile dropdown */}
                         <Menu as="div" className="relative ml-3 flex-shrink-0">
                           <div>
-                            <Menu.Button className="flex rounded-full bg-teal-600 text-sm text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-teal-600">
+                            <Menu.Button className="flex rounded-full bg-rose-600 text-sm text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-rose-600">
                               <span className="sr-only">Open user menu</span>
                               <Image
                                 src={userTwo.imageUrl.src}
@@ -197,8 +197,8 @@ function UserAccount() {
                         href={item.href}
                         className={classNames(
                           item.current
-                            ? 'bg-teal-700 text-white'
-                            : 'text-white hover:bg-teal-500 hover:bg-opacity-75',
+                            ? 'bg-rose-700 text-white'
+                            : 'text-white hover:bg-rose-500 hover:bg-opacity-75',
                           'block rounded-md py-2 px-3 text-base font-medium'
                         )}
                         aria-current={item.current ? 'page' : undefined}
@@ -207,7 +207,7 @@ function UserAccount() {
                       </Disclosure.Button>
                     ))}
                   </div>
-                  <div className="border-t border-teal-700 pt-4 pb-3">
+                  <div className="border-t border-rose-700 pt-4 pb-3">
                     <div className="flex items-center px-5">
                       <div className="flex-shrink-0">
                         <Image
@@ -222,13 +222,13 @@ function UserAccount() {
                         <div className="text-base font-medium text-white">
                           {userTwo.name}
                         </div>
-                        <div className="text-sm font-medium text-teal-300">
+                        <div className="text-sm font-medium text-rose-300">
                           {userTwo.email}
                         </div>
                       </div>
                       <button
                         type="button"
-                        className="ml-auto flex-shrink-0 rounded-full bg-teal-600 p-1 text-teal-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-teal-600"
+                        className="ml-auto flex-shrink-0 rounded-full bg-rose-600 p-1 text-rose-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-rose-600"
                       >
                         <span className="sr-only">View notifications</span>
                         <BellIcon className="h-6 w-6" aria-hidden="true" />
@@ -240,7 +240,7 @@ function UserAccount() {
                           key={item.name}
                           as="a"
                           href={item.href}
-                          className="block rounded-md py-2 px-3 text-base font-medium text-white hover:bg-teal-500 hover:bg-opacity-75"
+                          className="block rounded-md py-2 px-3 text-base font-medium text-white hover:bg-rose-500 hover:bg-opacity-75"
                         >
                           {item.name}
                         </Disclosure.Button>

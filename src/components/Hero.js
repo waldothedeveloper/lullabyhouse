@@ -1,10 +1,7 @@
 import { BlurryColoredBg } from '@/components/BlurryColoredBg'
-// import { SliderBeforeAfter } from '@/components/SliderBeforeAfter'
-import Image from 'next/future/image'
 import Link from 'next/link'
 import { PlayIcon } from '@heroicons/react/20/solid'
-// import menCouple from '@/images/men_couple.jpeg'
-import team_of_janitors from '@/images/team_of_janitors.jpeg'
+import { SliderBeforeAfter } from '@/components/SliderBeforeAfter'
 
 const heroCopy = [
   {
@@ -38,7 +35,7 @@ export const Hero = () => {
       <section className="pt-12 sm:pt-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
-            <h1 className="bg-gradient-to-r from-sky-400 via-pink-400 to-teal-500 bg-clip-text px-6 text-lg text-transparent">
+            <h1 className="bg-gradient-to-r from-sky-400 via-pink-400 to-rose-500 bg-clip-text px-6 text-lg text-transparent">
               {heroCopy[0].subtitle}
             </h1>
 
@@ -47,7 +44,7 @@ export const Hero = () => {
             </p>
 
             <div className="mt-20 px-8 sm:flex sm:items-center sm:justify-center sm:space-x-5 sm:px-0 lg:mt-24">
-              <BlurryColoredBg>Get a Cleaning Quote</BlurryColoredBg>
+              <BlurryColoredBg>Schedule a Cleaning</BlurryColoredBg>
 
               <Link
                 href="#"
@@ -62,8 +59,7 @@ export const Hero = () => {
             </div>
 
             <p className="mt-8 text-base font-semibold text-slate-500 dark:text-slate-400">
-              100% Satisfaction Guaranteed · Money back Guaranteed{' '}
-              <span className="text-xs">(fees apply)</span>
+              100% Satisfaction Guaranteed · We&apos;ll make you a believer
             </p>
           </div>
         </div>
@@ -72,23 +68,14 @@ export const Hero = () => {
           <div className="relative">
             <div className="absolute inset-0 h-2/3"></div>
             <div className="relative mx-auto">
-              <div className="mt-16 lg:mx-auto lg:max-w-6xl">
-                <Image
-                  className="scale-110 transform rounded-lg"
-                  src={team_of_janitors}
-                  layout="fill"
-                  alt="lullaby house crew cleaning customer house"
-                />
-                {/* <img
-                  className="scale-110 transform"
-                  src="https://cdn.rareblocks.xyz/collection/clarity/images/hero/2/illustration.png"
-                  alt=""
-                /> */}
-                {/* <SliderBeforeAfter
+              <div className="lg:mx-auto lg:max-w-6xl">
+                <div className="mt-16">
+                  <SliderBeforeAfter
                     aspectRatio={16 / 9}
                     orientation="horizontal"
                     value={75}
-                  /> */}
+                  />
+                </div>
               </div>
             </div>
           </div>

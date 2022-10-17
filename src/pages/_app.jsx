@@ -3,7 +3,6 @@ import '@/styles/tailwind.css'
 
 import { Layout } from '@/components/Layout'
 import { OnlineStatusProvider } from '@/components/providers/OnlineStatus'
-import { ProvideSchedule } from '@/context/provideScheduleContext'
 import { ThemeProvider } from 'next-themes'
 import { UserProvider } from '@auth0/nextjs-auth0'
 
@@ -13,11 +12,9 @@ export default function App({ Component, pageProps }) {
     <UserProvider>
       <ThemeProvider attribute="class" enableSystem={true}>
         <OnlineStatusProvider>
-          <ProvideSchedule>
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
-          </ProvideSchedule>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
         </OnlineStatusProvider>
       </ThemeProvider>
     </UserProvider>
