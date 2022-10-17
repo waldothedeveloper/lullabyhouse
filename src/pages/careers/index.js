@@ -10,7 +10,7 @@ export default function Home() {
       <div className="fixed bottom-[50%] right-0 z-50 mx-auto flex origin-center translate-x-[40%] rotate-90 text-base">
         <Link
           href="/careers/current_job_openings"
-          className="flex w-full items-center justify-center rounded-md border border-transparent bg-rose-500 px-5 py-3 text-base font-medium text-white hover:bg-rose-600 sm:text-sm lg:text-lg"
+          className="flex w-full items-center justify-center rounded-md border border-transparent bg-teal-500 px-5 py-3 text-base font-medium text-white hover:bg-teal-600 sm:text-sm lg:text-lg"
         >
           See open positions 🚀
         </Link>

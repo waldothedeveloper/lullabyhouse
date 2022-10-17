@@ -6,7 +6,7 @@ import curvedLines from '@/images/curved-lines.png'
 export const Hero = () => {
   return (
     <div className="relative">
-      <section className="overflow-hidden bg-gradient-to-bl from-sky-300 via-rose-100 to-yellow-50">
+      <section className="overflow-hidden bg-gradient-to-bl from-sky-300 via-teal-100 to-yellow-50">
         <div className="flex flex-col lg:min-h-[800px] lg:flex-row lg:items-stretch">
           <div className="relative flex w-full items-center justify-center lg:order-2 lg:w-7/12">
             <div className="absolute bottom-0 right-0 hidden lg:block">
@@ -31,7 +31,7 @@ export const Hero = () => {
               <div className="mt-12 max-w-xs">
                 <Link
                   href="/careers/current_job_openings"
-                  className="flex w-full items-center justify-center rounded-md border border-transparent bg-rose-600 px-5 py-3 text-base font-medium text-white hover:bg-rose-700 dark:bg-rose-700 dark:hover:bg-rose-500"
+                  className="flex w-full items-center justify-center rounded-md border border-transparent bg-teal-600 px-5 py-3 text-base font-medium text-white hover:bg-teal-700 dark:bg-teal-700 dark:hover:bg-teal-500"
                 >
                   See open positions
                 </Link>
