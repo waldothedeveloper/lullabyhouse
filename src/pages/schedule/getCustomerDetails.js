@@ -1,4 +1,4 @@
-import { NextStep } from '@/components/schedule/NextStep'
+import { NextStep } from '@/components/schedule/step2/NextStep'
 //
 export default function GetCustomerDetails() {
   return (

@@ -21,12 +21,6 @@ export const scheduleSteps = {
     title: 'Choose Date & Time',
     href: '/schedule/getCustomerDateAndTime',
     status: 'upcoming',
-    /* 
-      verifiedDateAndTime: {
-        date: 10/22/2022
-        time: 5pm
-      }
-      */
     verifiedDateAndTime: null,
     description:
       'Please let us know what day and time you would like us come clean your home',

@@ -1,4 +1,4 @@
-import { Calendar } from '@/components/schedule/Calendar'
+import { Calendar } from '@/components/schedule/step3/Calendar'
 import { ServiceHours } from '@/components/schedule/step3/Hours'
 
 export const CalendarWrapper = () => {
