@@ -35,7 +35,7 @@
 export const Testimonials = () => {
   return (
     <section className="pt-10 dark:bg-slate-800 sm:pt-16 md:pt-0 2xl:py-24">
-      <div className="mx-auto max-w-7xl rounded-md bg-rose-400 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl rounded-md bg-teal-400 px-4 sm:px-6 lg:px-8">
         <div className="2xl:pl-24">
           <div className="grid grid-cols-1 gap-y-12 md:grid-cols-2 md:gap-x-8 2xl:gap-x-20">
             <div className="text-center md:py-16 md:text-left xl:py-24">

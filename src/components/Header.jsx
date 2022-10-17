@@ -2,8 +2,10 @@ import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
 import { DarkModeButton } from '@/components/DarkModeButton'
 import { Disclosure } from '@headlessui/react'
+import Image from 'next/future/image'
 import Link from 'next/link'
 import { checkRedirectURL } from '@/utils/checkRedirectURL'
+import logo from '@/images/one_more_logo.png'
 import { useUser } from '@auth0/nextjs-auth0'
 
 export const Header = () => {

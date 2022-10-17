@@ -8,7 +8,6 @@ import { useTheme } from 'next-themes'
 //
 export const DarkModeButton = () => {
   const { setTheme, systemTheme } = useTheme()
-
   const [enabled, setEnabled] = useState(systemTheme === 'dark' ? true : false)
 
   //
@@ -17,9 +16,13 @@ export const DarkModeButton = () => {
       checked={enabled}
       onChange={() => {
         setEnabled((prevState) => {
+          console.log('prevState: ', prevState)
           if (prevState) {
             setTheme('light')
             return false
+          } else {
+            setTheme('dark')
+            return true
           }
         })
       }}

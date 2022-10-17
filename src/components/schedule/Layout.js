@@ -1,0 +1,24 @@
+import Image from 'next/future/image'
+import cleaningPlant from '@/images/cleaning_plant.jpeg'
+
+export function Layout({ children }) {
+  return (
+    <>
+      <div className="relative flex min-h-full justify-center dark:bg-slate-800 md:px-12 lg:px-0">
+        <div className="relative z-10 flex flex-1 flex-col py-10 px-4 sm:justify-center md:flex-none md:px-28">
+          <div className="mx-auto w-full max-w-md sm:px-4 md:w-96 md:max-w-sm md:px-0">
+            {children}
+          </div>
+        </div>
+        <div className="hidden sm:contents lg:relative lg:block lg:flex-1">
+          <Image
+            className="absolute inset-0 h-full w-full object-cover"
+            src={cleaningPlant}
+            alt="lullaby house cleaning specialists cleaning plants"
+            priority
+          />
+        </div>
+      </div>
+    </>
+  )
+}

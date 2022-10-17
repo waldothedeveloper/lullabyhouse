@@ -1,7 +1,7 @@
 import { Container } from '@/components/Container'
 import Image from 'next/future/image'
 import Link from 'next/link'
-import logo from '@/images/logo.png'
+import logo from '@/images/one_more_logo.png'
 //
 const navigation = {
   solutions: [
@@ -95,10 +95,7 @@ const navigation = {
 
 export const Footer = () => {
   return (
-    <footer
-      className="bg-slate-100 dark:bg-slate-700"
-      aria-labelledby="footer-heading"
-    >
+    <footer className="dark:bg-slate-700" aria-labelledby="footer-heading">
       <h2 id="footer-heading" className="sr-only">
         Footer
       </h2>
@@ -109,9 +106,7 @@ export const Footer = () => {
               src={logo}
               alt="Lullaby house logo"
               placeholder="blur"
-              priority
-              with={25}
-              height={25}
+              layout="fill"
             />
             <p className="text-base text-slate-400 dark:text-slate-300">
               Making the world a better place through constructing elegant
