@@ -8,7 +8,7 @@ import {
 
 import { BsBarChartSteps } from 'react-icons/bs'
 import PropTypes from 'prop-types'
-import { PropertyDisclaimer } from '@/components/schedule/PropertyDisclaimer'
+import { PropertyDisclaimer } from '@/components/schedule/step2/PropertyDisclaimer'
 
 //
 export const PropertyDetails = ({ propertyDetails }) => {
