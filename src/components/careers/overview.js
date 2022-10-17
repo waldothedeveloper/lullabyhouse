@@ -19,9 +19,9 @@ export const Overview = () => {
           What makes us different
         </h1>
         <p className="mt-1 max-w-2xl text-lg font-normal leading-7 dark:text-slate-300">
-          We are a full-service residential and commercial cleaning company
-          founded in 2022 in the heart of Hialeah, FL. We offer fully-qualified
-          staff and a top-notch customer service.
+          We are a full-service residential cleaning company founded in 2022 in
+          the heart of Hialeah, FL. We offer fully-qualified staff and a
+          top-notch customer service.
         </p>
 
         <div className="mt-10 grid grid-cols-1 gap-y-10 lg:mt-24 lg:grid-cols-12 lg:gap-x-20">

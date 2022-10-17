@@ -16,7 +16,7 @@ export const Steps = () => {
                   className="flex h-5 w-5 flex-shrink-0 items-center justify-center"
                   aria-hidden="true"
                 >
-                  <div className="font-semibold text-teal-500">
+                  <div className="font-semibold text-rose-500">
                     {step.number}
                   </div>
                 </div>

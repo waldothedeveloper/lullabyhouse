@@ -34,9 +34,10 @@ export const Features = () => {
           </h2>
           <p className="mt-4 text-base font-normal leading-7 text-slate-600 dark:text-slate-400 lg:mt-20 lg:text-lg lg:leading-8">
             Lullaby House offers deep cleaning, move in-out, and regular
-            cleaning services for residential customers. We specialize in deep
-            cleaning tasks like ovens, refrigerators, carpets and upholstery, so
-            you can enjoy the comfort of a clean home.
+            cleaning services for your home and other residential spaces. We
+            specialize in deep cleaning tasks like ovens, refrigerators, carpets
+            and upholstery, so you can enjoy the comfort of a clean home or
+            office.
           </p>
         </div>
 

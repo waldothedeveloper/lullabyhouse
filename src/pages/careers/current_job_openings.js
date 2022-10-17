@@ -9,7 +9,7 @@ const jobOpenings = [
     category: {
       name: 'Cleaning Services',
       href: 'https://bit.ly/3BRNavB',
-      color: 'bg-teal-100 text-teal-800',
+      color: 'bg-rose-100 text-rose-800',
     },
     description: `We are looking for highly qualified cleaners, cleaning teams or small cleaning companies to work with for residential house cleaning (occupied, move in/move out cleanings, holidays & special occasions).`,
     date: `September 28, 2022`,
@@ -27,16 +27,16 @@ export default function OpenPosition() {
     <div className="px-4 pt-16 pb-20 dark:bg-slate-800 sm:px-6 lg:px-8 lg:pt-24 lg:pb-28">
       <div className="relative mx-auto max-w-lg divide-y-2 divide-slate-200 dark:divide-slate-600 lg:max-w-7xl">
         <div>
-          <p className="text-base font-semibold text-teal-600">
+          <p className="text-base font-semibold text-rose-600">
             Job Openings at Lullaby House
           </p>
           <h2 className="mt-1 text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-50 sm:text-4xl">
             A rewarding career is just steps away
           </h2>
           <p className="mt-3 text-xl text-slate-500 dark:text-slate-400 sm:mt-4">
-            We are a full-service residential and commercial cleaning company
-            founded in 2022 in the heart of Miami, Florida. We offer
-            fully-qualified staff and a top-notch customer service.
+            We are a full-service residential cleaning company founded in 2022
+            in the heart of Miami, Florida. We offer fully-qualified staff and a
+            top-notch customer service.
           </p>
         </div>
         <div className="mt-12 grid gap-16 pt-12 lg:grid-cols-3 lg:gap-x-5 lg:gap-y-12">
