@@ -1,7 +1,20 @@
-import { Calendar } from '@/components/schedule/Calendar'
+import { Calendar } from '@/components/schedule/step3/Calendar'
 import { ServiceHours } from '@/components/schedule/step3/Hours'
 
-export const CalendarWrapper = () => {
+//
+export const CalendarWrapper = ({
+  today,
+  days,
+  nextMonth,
+  previousMonth,
+  selectedDay,
+  setSelectedDay,
+  handleTime,
+  hours,
+  currentMonth,
+  firstDayCurrentMonth,
+}) => {
+  //
   return (
     <div className="space-y-6 sm:space-y-5">
       <div className="sm:grid sm:grid-cols-6 sm:items-start sm:gap-6 sm:border-t sm:border-slate-200 sm:pt-5">
@@ -17,10 +30,20 @@ export const CalendarWrapper = () => {
         </label>
 
         <div className="mt-1 sm:col-span-3 sm:mt-0">
-          <Calendar />
+          <Calendar
+            today={today}
+            days={days}
+            nextMonth={nextMonth}
+            previousMonth={previousMonth}
+            selectedDay={selectedDay}
+            setSelectedDay={setSelectedDay}
+            handleTime={handleTime}
+            currentMonth={currentMonth}
+            firstDayCurrentMonth={firstDayCurrentMonth}
+          />
         </div>
         <div className="mt-1 sm:col-span-2 sm:col-start-5 sm:mt-0">
-          <ServiceHours />
+          <ServiceHours hours={hours} handleTime={handleTime} />
         </div>
       </div>
     </div>
