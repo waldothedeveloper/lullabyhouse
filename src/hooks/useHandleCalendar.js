@@ -4,18 +4,17 @@ import {
   endOfMonth,
   format,
   parse,
+  set,
   startOfToday,
 } from 'date-fns'
 
-import { useRouter } from 'next/router'
-import { useSchedule } from '@/context/provideScheduleContext'
 import { useState } from 'react'
 
 export const useHandleCalendar = () => {
-  const router = useRouter()
-  const { handleStepContext } = useSchedule()
   const today = startOfToday()
   const [selectedDay, setSelectedDay] = useState(null)
+  const [timeAndDateOfBooking, setTimeAndDateOfBooking] = useState(null)
+  const [hours, setHandleHours] = useState(null)
   const [currentMonth, setCurrentMonth] = useState(format(today, 'MMM-yyyy'))
   const firstDayCurrentMonth = parse(currentMonth, 'MMM-yyyy', new Date())
 
@@ -38,9 +37,15 @@ export const useHandleCalendar = () => {
     setCurrentMonth(format(firstDayOfNextMonth(-1), 'MMM-yyyy'))
   }
 
-  const handleSelectCleaningDate = (step, data) => {
-    handleStepContext({ step, data })
-    return router.push(`/schedule/start`)
+  const handleTime = ({ time, militaryHour, minutes }) => {
+    setHandleHours(time)
+
+    const result = set(selectedDay, {
+      hours: militaryHour,
+      minutes: minutes,
+    })
+
+    setTimeAndDateOfBooking(result)
   }
 
   return {
@@ -50,8 +55,10 @@ export const useHandleCalendar = () => {
     previousMonth,
     selectedDay,
     setSelectedDay,
+    handleTime,
+    hours,
     currentMonth,
     firstDayCurrentMonth,
-    handleSelectCleaningDate,
+    timeAndDateOfBooking,
   }
 }
