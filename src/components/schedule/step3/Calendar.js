@@ -10,9 +10,7 @@ import {
   isToday,
 } from 'date-fns'
 
-// import { NextStep } from '@/components/schedule/NextStep'
 import { classNames } from '@/utils/classNames'
-import { useHandleCalendar } from '@/hooks/useHandleCalendar'
 
 const colStartClasses = [
   '',
@@ -40,18 +38,16 @@ const colStartClasses = [
 // ]
 
 //
-export const Calendar = () => {
-  const {
-    today,
-    days,
-    nextMonth,
-    previousMonth,
-    selectedDay,
-    setSelectedDay,
-    currentMonth,
-    firstDayCurrentMonth,
-  } = useHandleCalendar()
-
+export const Calendar = ({
+  today,
+  days,
+  nextMonth,
+  previousMonth,
+  selectedDay,
+  setSelectedDay,
+  currentMonth,
+  firstDayCurrentMonth,
+}) => {
   //
   return (
     <div className="mx-auto max-w-lg text-center">
