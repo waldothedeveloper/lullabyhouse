@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { RadioGroup } from '@headlessui/react'
 import { SavingsToolTip } from '@/components/schedule/step3/SavingsToolTip'
 import { classNames } from '@/utils/classNames'
-import { services } from '@/utils/services'
+import { serviceFrequency } from '@/utils/services'
 
 //
 export const Frequency = ({ selectedService, setSelectedService }) => {
@@ -18,7 +18,7 @@ export const Frequency = ({ selectedService, setSelectedService }) => {
       <div className="mt-1 sm:col-span-2 sm:mt-0">
         <RadioGroup value={selectedService} onChange={setSelectedService}>
           <div className="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-3 sm:gap-x-4">
-            {services.map((service) => (
+            {serviceFrequency.map((service) => (
               <RadioGroup.Option
                 key={service.id}
                 value={service}

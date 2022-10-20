@@ -1,4 +1,4 @@
-export const services = [
+export const serviceFrequency = [
   {
     id: 1,
     title: 'Just once',
