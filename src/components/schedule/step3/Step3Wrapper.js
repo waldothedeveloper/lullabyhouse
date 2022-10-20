@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react'
+
 import { CalendarWrapper } from '@/components/schedule/step3/CalendarWrapper'
 import { Extras } from '@/components/schedule/step3/Extras'
 import { Frequency } from '@/components/schedule/step3/Frequency'
@@ -5,9 +7,12 @@ import Link from 'next/link'
 import { useExtras } from '@/hooks/useExtras'
 import { useFrequency } from '@/hooks/useFrequency'
 import { useHandleCalendar } from '@/hooks/useHandleCalendar'
+import { validate } from '@/utils/validateStep3'
+
 //
 
 export const Step3Wrapper = () => {
+  const [errors, setErrors] = useState(null)
   const { selectedService, setSelectedService } = useFrequency()
   const {
     today,
@@ -19,13 +24,26 @@ export const Step3Wrapper = () => {
     handleTime,
     hours,
     currentMonth,
+    timeAndDateOfBooking,
     firstDayCurrentMonth,
   } = useHandleCalendar()
   const { extrasSelected, handleExtraSelect } = useExtras()
 
+  const handleSubmit = (event) => {
+    if (event) event.preventDefault()
+
+    setErrors(validate(selectedService, timeAndDateOfBooking))
+  }
+
+  useEffect(() => {
+    if (errors && Object.keys(errors).length === 0) {
+      console.log(`you can submit the form`)
+    }
+  }, [errors])
+
   return (
     <form
-      onSubmit={(e) => e.preventDefault()}
+      onSubmit={handleSubmit}
       className="space-y-8 divide-y divide-slate-200"
     >
       <div className="space-y-8 divide-y divide-slate-200 sm:space-y-5">

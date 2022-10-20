@@ -3,18 +3,19 @@ import {
   eachDayOfInterval,
   endOfMonth,
   format,
+  isValid,
   parse,
   set,
   startOfToday,
 } from 'date-fns'
-
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export const useHandleCalendar = () => {
   const today = startOfToday()
   const [selectedDay, setSelectedDay] = useState(null)
   const [timeAndDateOfBooking, setTimeAndDateOfBooking] = useState(null)
   const [hours, setHandleHours] = useState(null)
+  const [fullHours, setFullHours] = useState(null)
   const [currentMonth, setCurrentMonth] = useState(format(today, 'MMM-yyyy'))
   const firstDayCurrentMonth = parse(currentMonth, 'MMM-yyyy', new Date())
 
@@ -39,14 +40,20 @@ export const useHandleCalendar = () => {
 
   const handleTime = ({ time, militaryHour, minutes }) => {
     setHandleHours(time)
+    setFullHours({ time, militaryHour, minutes })
+  }
 
+  // I'm not 100% convinced with this thing here, I'll think about it
+  useEffect(() => {
     const result = set(selectedDay, {
-      hours: militaryHour,
-      minutes: minutes,
+      hours: fullHours?.militaryHour,
+      minutes: fullHours?.minutes,
     })
 
-    setTimeAndDateOfBooking(result)
-  }
+    if (selectedDay && isValid(selectedDay)) {
+      setTimeAndDateOfBooking(result)
+    }
+  }, [fullHours, selectedDay])
 
   return {
     today,
