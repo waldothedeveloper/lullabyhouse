@@ -50,7 +50,7 @@ export const useHandleCalendar = () => {
       minutes: fullHours?.minutes,
     })
 
-    if (selectedDay && isValid(selectedDay)) {
+    if (selectedDay && fullHours && isValid(selectedDay)) {
       setTimeAndDateOfBooking(result)
     }
   }, [fullHours, selectedDay])

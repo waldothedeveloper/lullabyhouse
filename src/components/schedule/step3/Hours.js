@@ -3,7 +3,7 @@ import { classNames } from '@/utils/classNames'
 import { hoursMapping } from '@/utils/hours'
 
 //
-export const ServiceHours = ({ handleTime, hours }) => {
+export const ServiceHours = ({ handleTime, hours, errors }) => {
   return (
     <RadioGroup defaultValue={hours} onChange={handleTime} name="select_hours">
       <RadioGroup.Label className="sr-only">
@@ -19,6 +19,9 @@ export const ServiceHours = ({ handleTime, hours }) => {
                 checked ? 'border-transparent bg-cyan-500' : 'border-slate-300',
                 active
                   ? 'border-cyan-500 bg-cyan-500 ring-2 ring-cyan-600'
+                  : '',
+                errors?.dateAndTime
+                  ? 'animate-pulse border-red-500 ring-1 ring-red-500'
                   : '',
                 'relative block cursor-pointer rounded-md border bg-white px-6 py-4 text-center shadow-sm focus:outline-none sm:flex sm:justify-between'
               )
