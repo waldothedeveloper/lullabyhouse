@@ -39,6 +39,7 @@ const colStartClasses = [
 
 //
 export const Calendar = ({
+  errors,
   today,
   days,
   nextMonth,
@@ -50,7 +51,13 @@ export const Calendar = ({
 }) => {
   //
   return (
-    <div className="mx-auto max-w-lg text-center">
+    <div
+      className={
+        errors?.dateAndTime
+          ? 'mx-auto max-w-lg animate-pulse text-center'
+          : 'mx-auto max-w-lg text-center'
+      }
+    >
       <div className="flex flex-shrink-0 flex-col items-center text-slate-900">
         {/* <p className="max-w-xs p-3 text-xs font-medium text-slate-400">
           Dates past{' '}

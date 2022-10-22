@@ -6,12 +6,16 @@ import { classNames } from '@/utils/classNames'
 import { serviceFrequency } from '@/utils/services'
 
 //
-export const Frequency = ({ selectedService, setSelectedService }) => {
+export const Frequency = ({ selectedService, setSelectedService, errors }) => {
   return (
     <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-slate-200 sm:pt-5">
       <label
         htmlFor="about"
-        className="block text-sm font-medium text-slate-700 sm:mt-px sm:pt-2"
+        className={
+          errors?.frequency
+            ? 'block text-sm font-medium text-red-500 sm:mt-px sm:pt-2'
+            : 'block text-sm font-medium text-slate-700 sm:mt-px sm:pt-2'
+        }
       >
         Choose your Frequency
       </label>
@@ -26,6 +30,9 @@ export const Frequency = ({ selectedService, setSelectedService }) => {
                   classNames(
                     checked ? 'border-transparent' : 'border-slate-300',
                     active ? service.active : '',
+                    errors?.frequency
+                      ? 'animate-pulse border-red-500 ring-1 ring-red-500'
+                      : '',
                     'relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none'
                   )
                 }
@@ -78,4 +85,5 @@ export const Frequency = ({ selectedService, setSelectedService }) => {
 Frequency.propTypes = {
   selectedService: PropTypes.object,
   setSelectedService: PropTypes.func,
+  errors: PropTypes.object,
 }
