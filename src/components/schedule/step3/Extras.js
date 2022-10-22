@@ -13,6 +13,10 @@ export const Extras = ({ extras, handleExtraSelect }) => {
                   id="label-extras"
                 >
                   Choose Any Extras
+                  <span className="mt-1 block text-xs text-slate-400">
+                    These are totally optional, but highly recommended, our
+                    regular customers get most of them for free.
+                  </span>
                 </div>
               </div>
               <div className="mt-4 sm:col-span-2 sm:mt-0">
