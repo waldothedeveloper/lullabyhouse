@@ -1,5 +1,5 @@
 import toast, { Toaster } from 'react-hot-toast'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 import { CalendarWrapper } from '@/components/schedule/step3/CalendarWrapper'
 import { Extras } from '@/components/schedule/step3/Extras'
@@ -9,15 +9,19 @@ import { notify } from '@/components/Notifications'
 import { useExtras } from '@/hooks/useExtras'
 import { useFrequency } from '@/hooks/useFrequency'
 import { useHandleCalendar } from '@/hooks/useHandleCalendar'
+import { useRouter } from 'next/router'
+import { useStepper } from '@/hooks/useStepper'
 import { validate } from '@/utils/validateStep3'
 
 //
 
 //
 export const Step3Wrapper = () => {
+  const router = useRouter()
+  const { handleStepContext } = useStepper()
   const [errors, setErrors] = useState(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
-
+  const { extrasSelected, handleExtraSelect } = useExtras()
   const { selectedService, setSelectedService } = useFrequency()
   const {
     today,
@@ -32,24 +36,35 @@ export const Step3Wrapper = () => {
     timeAndDateOfBooking,
     firstDayCurrentMonth,
   } = useHandleCalendar()
-  const { extrasSelected, handleExtraSelect } = useExtras()
 
+  // show notification errors
   useEffect(() => {
-    notify(errors)
+    if (errors && Object.keys(errors).length > 0) {
+      notify(errors)
+    }
   }, [errors])
 
+  // populate local error state if the form has errors
   useEffect(() => {
     if (isSubmitting) {
       setErrors(validate(selectedService, timeAndDateOfBooking))
     }
   }, [selectedService, timeAndDateOfBooking, isSubmitting])
 
-  const handleSubmit = (event) => {
-    if (event) event.preventDefault()
-    setIsSubmitting(true)
-    setErrors(validate(selectedService, timeAndDateOfBooking))
+  const callback = () => {
+    handleStepContext({
+      step: 3,
+      data: {
+        selectedService,
+        timeAndDateOfBooking,
+        extrasSelected,
+      },
+    })
+
+    // router.push(`/checkout`)
   }
 
+  // submit the form is there are no errors
   useEffect(() => {
     if (errors && Object.keys(errors).length === 0 && isSubmitting) {
       console.log(`you can submit the form`)
@@ -57,6 +72,13 @@ export const Step3Wrapper = () => {
       toast.dismiss()
     }
   }, [errors, isSubmitting])
+
+  // attempt to submit the form to find out if there are errors
+  const handleSubmit = (event) => {
+    if (event) event.preventDefault()
+    setIsSubmitting(true)
+    setErrors(validate(selectedService, timeAndDateOfBooking))
+  }
 
   return (
     <>
