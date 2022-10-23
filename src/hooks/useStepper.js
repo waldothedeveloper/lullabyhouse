@@ -7,8 +7,8 @@ export const useStepper = () => {
   console.log(`context`, context)
 
   const handleStepContext = ({ step, data }) => {
-    // console.log('data: ', data)
-    // console.log('step: ', step)
+    console.log('data: ', data)
+    console.log('step: ', step)
     setContext((prevContext) => {
       if (step === 1) {
         return {
@@ -34,7 +34,17 @@ export const useStepper = () => {
           date: { ...prevContext.date, status: 'current' },
         }
       } else if (step === 3) {
-        //
+        return {
+          ...prevContext,
+          date: {
+            verifiedDateAndTime: data?.timeAndDateOfBooking,
+            extras: data?.extrasSelected.filter((elem) => elem.checked),
+            serviceFrecuency: {
+              frequency: 'weekly',
+              discount: '20%',
+            },
+          },
+        }
       } else {
         return {
           ...prevContext,

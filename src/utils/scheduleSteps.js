@@ -21,32 +21,10 @@ export const scheduleSteps = {
     title: 'Choose Date & Time',
     href: '/schedule/getCustomerDateAndTime',
     status: 'upcoming',
-    /* 
-      verifiedDateAndTime: {
-        date: 10/22/2022
-        time: 5pm
-      }
-      */
+    serviceFrecuency: null,
     verifiedDateAndTime: null,
+    extras: [],
     description:
       'Please let us know what day and time you would like us come clean your home',
   },
-  // phoneNumber: {
-  //   id: 4,
-  //   title: 'Enter your Contact Info',
-  //   href: '/schedule/getCustomerDetails',
-  //   status: 'upcoming',
-
-  //   verifiedUserInfo: null,
-  //   description:
-  //     'You will need to be contacted in the event of an unforeseen event',
-  // },
 }
-
-/* 
- STEP 4???
-      verifiedUserInfo: {
-        phone: 555-555-5555
-        email: email@gmail.com
-      }
-      */
