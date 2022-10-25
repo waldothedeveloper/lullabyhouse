@@ -5,6 +5,7 @@ import { useSchedule } from '@/context/provideScheduleContext'
 
 export const Stepper = () => {
   const { context, setContext } = useSchedule()
+
   //
   return (
     <div className="py-12 px-4 sm:px-6 lg:px-8">
@@ -16,7 +17,7 @@ export const Stepper = () => {
               {step.status === 'complete' ? (
                 <Complete step={step} />
               ) : step.status === 'current' ? (
-                <Current step={step} reset={setContext} />
+                <Current step={step} />
               ) : (
                 <Upcoming step={step} />
               )}

@@ -1,5 +1,5 @@
 import toast, { Toaster } from 'react-hot-toast'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { CalendarWrapper } from '@/components/schedule/step3/CalendarWrapper'
 import { Extras } from '@/components/schedule/step3/Extras'
@@ -10,7 +10,7 @@ import { useExtras } from '@/hooks/useExtras'
 import { useFrequency } from '@/hooks/useFrequency'
 import { useHandleCalendar } from '@/hooks/useHandleCalendar'
 import { useRouter } from 'next/router'
-import { useStepper } from '@/hooks/useStepper'
+import { useSchedule } from '@/context/provideScheduleContext'
 import { validate } from '@/utils/validateStep3'
 
 //
@@ -18,7 +18,7 @@ import { validate } from '@/utils/validateStep3'
 //
 export const Step3Wrapper = () => {
   const router = useRouter()
-  const { handleStepContext } = useStepper()
+  const { dispatch } = useSchedule()
   const [errors, setErrors] = useState(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const { extrasSelected, handleExtraSelect } = useExtras()
@@ -51,28 +51,24 @@ export const Step3Wrapper = () => {
     }
   }, [selectedService, timeAndDateOfBooking, isSubmitting])
 
-  const callback = () => {
-    handleStepContext({
-      step: 3,
-      data: {
-        selectedService,
-        timeAndDateOfBooking,
-        extrasSelected,
-      },
-    })
-
-    // router.push(`/checkout`)
-  }
-
-  // submit the form is there are no errors
   useEffect(() => {
     if (errors && Object.keys(errors).length === 0 && isSubmitting) {
-      console.log(`you can submit the form`)
-      setIsSubmitting(false)
+      console.log(`HOW MANY TIMES DO I RUN?`)
       toast.dismiss()
-    }
-  }, [errors, isSubmitting])
+      setIsSubmitting(false)
+      dispatch({
+        type: 3,
+        data: {
+          selectedService,
+          timeAndDateOfBooking,
+          extrasSelected,
+        },
+      })
 
+      router.push(`/checkout`)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [errors, isSubmitting])
   // attempt to submit the form to find out if there are errors
   const handleSubmit = (event) => {
     if (event) event.preventDefault()

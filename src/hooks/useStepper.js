@@ -1,57 +1,60 @@
 import { scheduleSteps } from '@/utils/scheduleSteps'
-import { useState } from 'react'
+import { useReducer } from 'react'
+
+const createSchedule = () => scheduleSteps
+
+const reducer = (state, action) => {
+  const { type, data } = action
+
+  switch (type) {
+    case 1:
+      console.log(` 1 CASE 1 CASE 111111111`)
+      return {
+        ...state,
+        typeOfCleaning: {
+          ...state.typeOfCleaning,
+          status: 'complete',
+          selectedService: data,
+        },
+        address: {
+          ...state.address,
+          status: 'current',
+        },
+      }
+
+    case 2:
+      console.log(`CASE 2 CASE CASE 2 2222222222`)
+      return {
+        ...state,
+        address: {
+          ...state.address,
+          status: 'complete',
+          verifiedAddress: data[0]?.description,
+        },
+        date: { ...state.date, status: 'current' },
+      }
+    case 3:
+      console.log(`CASE 3 CASE CASE 33333333`)
+      return {
+        ...state,
+        date: {
+          ...state.date,
+          status: 'complete',
+          verifiedDateAndTime: data?.timeAndDateOfBooking,
+          extras: data?.extrasSelected.filter((elem) => elem.checked),
+          serviceFrecuency: {
+            frequency: data?.selectedService?.title,
+            discount: '20%',
+          },
+        },
+      }
+  }
+  throw Error('Unknown action: ' + type)
+}
 
 export const useStepper = () => {
-  // states: current, upcoming, complete
-  const [context, setContext] = useState(scheduleSteps)
-  console.log(`context`, context)
+  const [context, dispatch] = useReducer(reducer, null, createSchedule)
+  console.log('context: ', context)
 
-  const handleStepContext = ({ step, data }) => {
-    console.log('data: ', data)
-    console.log('step: ', step)
-    setContext((prevContext) => {
-      if (step === 1) {
-        return {
-          ...prevContext,
-          typeOfCleaning: {
-            ...prevContext.typeOfCleaning,
-            status: 'complete',
-            selectedService: data,
-          },
-          address: {
-            ...prevContext.address,
-            status: 'current',
-          },
-        }
-      } else if (step === 2) {
-        return {
-          ...prevContext,
-          address: {
-            ...prevContext.address,
-            status: 'complete',
-            verifiedAddress: data[0]?.description,
-          },
-          date: { ...prevContext.date, status: 'current' },
-        }
-      } else if (step === 3) {
-        return {
-          ...prevContext,
-          date: {
-            verifiedDateAndTime: data?.timeAndDateOfBooking,
-            extras: data?.extrasSelected.filter((elem) => elem.checked),
-            serviceFrecuency: {
-              frequency: 'weekly',
-              discount: '20%',
-            },
-          },
-        }
-      } else {
-        return {
-          ...prevContext,
-        }
-      }
-    })
-  }
-
-  return { context, handleStepContext, setContext }
+  return { context, dispatch }
 }
