@@ -48,7 +48,7 @@ const reducer = (state, action) => {
     default:
       break
   }
-  throw Error('Unknown action: ' + type)
+  throw Error(`Unknown action: ${type}`)
 }
 
 export const useStepper = () => {
