@@ -1,4 +1,4 @@
-import { useSchedule } from '@/context/provideScheduleContext'
+// import { useSchedule } from '@/context/provideScheduleContext'
 
 const products = [
   {
@@ -17,8 +17,7 @@ const products = [
 ]
 
 export const Checkout = () => {
-  const { context } = useSchedule()
-  console.log('context: ', context)
+  // const { context } = useSchedule()
 
   return (
     <div className="bg-white">

@@ -53,7 +53,6 @@ export const Step3Wrapper = () => {
 
   useEffect(() => {
     if (errors && Object.keys(errors).length === 0 && isSubmitting) {
-      console.log(`HOW MANY TIMES DO I RUN?`)
       toast.dismiss()
       setIsSubmitting(false)
       dispatch({
