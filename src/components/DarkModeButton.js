@@ -16,7 +16,6 @@ export const DarkModeButton = () => {
       checked={enabled}
       onChange={() => {
         setEnabled((prevState) => {
-          console.log('prevState: ', prevState)
           if (prevState) {
             setTheme('light')
             return false
