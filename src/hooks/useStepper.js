@@ -8,7 +8,6 @@ const reducer = (state, action) => {
 
   switch (type) {
     case 1:
-      console.log(` 1 CASE 1 CASE 111111111`)
       return {
         ...state,
         typeOfCleaning: {
@@ -23,7 +22,6 @@ const reducer = (state, action) => {
       }
 
     case 2:
-      console.log(`CASE 2 CASE CASE 2 2222222222`)
       return {
         ...state,
         address: {
@@ -34,7 +32,6 @@ const reducer = (state, action) => {
         date: { ...state.date, status: 'current' },
       }
     case 3:
-      console.log(`CASE 3 CASE CASE 33333333`)
       return {
         ...state,
         date: {
@@ -54,7 +51,5 @@ const reducer = (state, action) => {
 
 export const useStepper = () => {
   const [context, dispatch] = useReducer(reducer, null, createSchedule)
-  console.log('context: ', context)
-
   return { context, dispatch }
 }

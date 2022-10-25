@@ -2,13 +2,9 @@ export default async function handler(req, res) {
   try {
     const query = req.query
     const { address } = query
-    console.log('address: ', address)
-
     const result = await fetch(
       `https://www.miamidade.gov/Apps/PA/PApublicServiceProxy/PaServicesProxy.ashx?Operation=GetAddress&clientAppName=PropertySearch&from=1&myAddress=${address}&myUnit=&to=200`
     ).then((data) => data.json())
-
-    // console.log(`FIND ADDRESS BY FOLIO API:`, result)
 
     if (!result.Completed) {
       return res.status(500).json({
@@ -29,5 +25,3 @@ export default async function handler(req, res) {
     })
   }
 }
-
-// const result = f

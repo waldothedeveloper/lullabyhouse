@@ -2,14 +2,12 @@ export default async function handler(req, res) {
   try {
     const query = req.query
     const { folioNumber } = query
-    console.log('folioNumber: ', folioNumber)
 
     const result = await fetch(
       `https://www.miamidade.gov/Apps/PA/PApublicServiceProxy/PaServicesProxy.ashx?Operation=GetPropertySearchByFolio&clientAppName=PropertySearch&folioNumber=${folioNumber}`
     ).then((data) => data.json())
 
     const { PropertyInfo } = result
-    console.log('PropertyInfo: ', PropertyInfo)
 
     if (!PropertyInfo.DORDescription.includes('RESIDENTIAL')) {
       return res.status(400).json({
@@ -39,7 +37,6 @@ export default async function handler(req, res) {
       neighborhood,
     })
   } catch (error) {
-    console.log('error: ', error)
     return res.status(500).json({
       message: `Our system has detected an unexpected error.`,
       status: error.status,
