@@ -5,16 +5,10 @@ import { classNames } from '@/utils/classNames'
 import { typesOfCleaningServices } from '@/utils/cleaningServices'
 import { useRouter } from 'next/router'
 import { useSchedule } from '@/context/provideScheduleContext'
-
 //
 export const ServiceTypes = () => {
   const router = useRouter()
-  const { handleStepContext } = useSchedule()
-
-  const handleClick = (step, data) => {
-    handleStepContext({ step, data })
-    return router.push(`/schedule/start`)
-  }
+  const { dispatch } = useSchedule()
 
   //
   return (
@@ -35,13 +29,13 @@ export const ServiceTypes = () => {
         </p>
       </div>
       <div className="mt-12 divide-y divide-slate-200 overflow-hidden rounded-lg bg-slate-200 shadow sm:grid sm:grid-cols-2 sm:gap-px sm:divide-y-0 lg:grid-cols-3">
-        {typesOfCleaningServices.map((action, actionIdx) => (
+        {typesOfCleaningServices.map((service, idx) => (
           <div
-            key={action.title}
+            key={service.title}
             className={classNames(
-              actionIdx === 0
+              idx === 0
                 ? 'rounded-tl-lg rounded-tr-lg sm:rounded-tr-none'
-                : actionIdx === typesOfCleaningServices.length - 1
+                : idx === typesOfCleaningServices.length - 1
                 ? 'rounded-bl-lg rounded-br-lg sm:rounded-bl-none'
                 : '',
               'group relative bg-white p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-sky-500 dark:bg-slate-700'
@@ -50,27 +44,30 @@ export const ServiceTypes = () => {
             <div>
               <span
                 className={classNames(
-                  action.iconBackground,
-                  action.iconForeground,
+                  service.iconBackground,
+                  service.iconForeground,
                   'inline-flex rounded-lg p-3 ring-4 ring-white dark:ring-slate-50'
                 )}
               >
-                <Image src={action.icon} width={50} height={50} />
+                <Image src={service.icon} width={50} height={50} />
               </span>
             </div>
             <div className="mt-8">
               <h3 className="text-lg font-medium">
                 <button
-                  onClick={() => handleClick(1, action.title)}
+                  onClick={() => {
+                    dispatch({ type: 1, data: service.title })
+                    router.push(`/schedule/start`)
+                  }}
                   className="focus:outline-none dark:text-slate-100"
                 >
                   {/* Extend touch target to entire panel */}
                   <span className="absolute inset-0" aria-hidden="true" />
-                  {action.title}
+                  {service.title}
                 </button>
               </h3>
               <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
-                {action.description}
+                {service.description}
               </p>
             </div>
             <span

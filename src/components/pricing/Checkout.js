@@ -1,3 +1,5 @@
+import { useSchedule } from '@/context/provideScheduleContext'
+
 const products = [
   {
     id: 1,
@@ -15,6 +17,9 @@ const products = [
 ]
 
 export const Checkout = () => {
+  const { context } = useSchedule()
+  console.log('context: ', context)
+
   return (
     <div className="bg-white">
       {/* Background color split screen for large screens */}
