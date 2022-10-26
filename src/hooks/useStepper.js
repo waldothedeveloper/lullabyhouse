@@ -53,5 +53,6 @@ const reducer = (state, action) => {
 
 export const useStepper = () => {
   const [context, dispatch] = useReducer(reducer, null, createSchedule)
+  // console.log('context: ', context)
   return { context, dispatch }
 }
