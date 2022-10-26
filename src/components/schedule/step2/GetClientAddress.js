@@ -83,7 +83,7 @@ export const GetClientAddress = () => {
                             <Combobox.Input
                               placeholder="Let's get your address"
                               className="w-full scroll-py-3.5 border-none px-3 text-base font-medium leading-5 text-slate-900 focus:ring-0"
-                              displayValue={(value) => value}
+                              displayValue={value}
                               onChange={(event) =>
                                 handleInput(event.target.value)
                               }

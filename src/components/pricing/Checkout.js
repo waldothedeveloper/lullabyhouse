@@ -18,6 +18,7 @@ const products = [
 
 export const Checkout = () => {
   // const { context } = useSchedule()
+  // console.log('context: ', context)
 
   return (
     <div className="bg-white">

@@ -66,8 +66,15 @@ export const Step3Wrapper = () => {
 
       router.push(`/checkout`)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [errors, isSubmitting])
+  }, [
+    errors,
+    isSubmitting,
+    dispatch,
+    extrasSelected,
+    router,
+    selectedService,
+    timeAndDateOfBooking,
+  ])
   // attempt to submit the form to find out if there are errors
   const handleSubmit = (event) => {
     if (event) event.preventDefault()
