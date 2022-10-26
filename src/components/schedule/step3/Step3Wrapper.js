@@ -1,29 +1,17 @@
-import toast, { Toaster } from 'react-hot-toast'
-import { useEffect, useState } from 'react'
-
 import { CalendarWrapper } from '@/components/schedule/step3/CalendarWrapper'
 import { Extras } from '@/components/schedule/step3/Extras'
 import { Frequency } from '@/components/schedule/step3/Frequency'
 import Link from 'next/link'
-import { notify } from '@/components/Notifications'
-import { useExtras } from '@/hooks/useExtras'
-import { useFrequency } from '@/hooks/useFrequency'
-import { useHandleCalendar } from '@/hooks/useHandleCalendar'
-import { useRouter } from 'next/router'
-import { useSchedule } from '@/context/provideScheduleContext'
-import { validate } from '@/utils/validateStep3'
+import { Toaster } from 'react-hot-toast'
+import { useForm } from '@/hooks/useForm'
 
 //
 
 //
 export const Step3Wrapper = () => {
-  const router = useRouter()
-  const { dispatch } = useSchedule()
-  const [errors, setErrors] = useState(null)
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const { extrasSelected, handleExtraSelect } = useExtras()
-  const { selectedService, setSelectedService } = useFrequency()
   const {
+    errors,
+    handleSubmit,
     today,
     days,
     nextMonth,
@@ -33,55 +21,14 @@ export const Step3Wrapper = () => {
     handleTime,
     hours,
     currentMonth,
-    timeAndDateOfBooking,
     firstDayCurrentMonth,
-  } = useHandleCalendar()
-
-  // show notification errors
-  useEffect(() => {
-    if (errors && Object.keys(errors).length > 0) {
-      notify(errors)
-    }
-  }, [errors])
-
-  // populate local error state if the form has errors
-  useEffect(() => {
-    if (isSubmitting) {
-      setErrors(validate(selectedService, timeAndDateOfBooking))
-    }
-  }, [selectedService, timeAndDateOfBooking, isSubmitting])
-
-  useEffect(() => {
-    if (errors && Object.keys(errors).length === 0 && isSubmitting) {
-      toast.dismiss()
-      setIsSubmitting(false)
-      dispatch({
-        type: 3,
-        data: {
-          selectedService,
-          timeAndDateOfBooking,
-          extrasSelected,
-        },
-      })
-
-      router.push(`/checkout`)
-    }
-  }, [
-    errors,
-    isSubmitting,
-    dispatch,
-    extrasSelected,
-    router,
+    handleExtraSelect,
+    setSelectedService,
     selectedService,
-    timeAndDateOfBooking,
-  ])
-  // attempt to submit the form to find out if there are errors
-  const handleSubmit = (event) => {
-    if (event) event.preventDefault()
-    setIsSubmitting(true)
-    setErrors(validate(selectedService, timeAndDateOfBooking))
-  }
+    extrasSelected,
+  } = useForm()
 
+  //
   return (
     <>
       <form
