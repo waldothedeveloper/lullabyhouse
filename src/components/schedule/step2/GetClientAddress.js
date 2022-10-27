@@ -2,13 +2,14 @@ import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/24/outline'
 import { Combobox, Transition } from '@headlessui/react'
 
 import { Fragment } from 'react'
+import Image from 'next/future/image'
 import { NextStep } from '@/components/schedule/step2/NextStep'
-// import Image from 'next/future/image'
 import { PropertyDetails } from '@/components/schedule/step2/PropertyDetails'
 import { PropertyNotFound } from '@/components/schedule/step2/PropertyNotFound'
 import { addressFetcher } from '@/utils/addressFetcher'
-// import cleaningPlant from '@/images/cleaning_plant.jpeg'
+import dogBored from '@/images/dog_bored.jpg'
 import { folioFetcher } from '@/utils/folioFetcher'
+import house from '@/images/house_with_stairs.jpg'
 import { useFindAddressFolio } from '@/hooks/useFindAddressFolio'
 import { useGetAddressByFolio } from '@/hooks/useGetAddressByFolio'
 import { useVerifyAddress } from '@/hooks/useVerifyAddress'
@@ -34,28 +35,18 @@ export const GetClientAddress = () => {
         <div className="grid items-center gap-y-10 md:grid-cols-3">
           <div className="pr-12 sm:pr-0">
             <div className="relative mb-12 max-w-xs">
-              <img
+              <Image
                 className="rounded-md object-bottom"
-                src="https://images.unsplash.com/photo-1602872029708-84d970d3382b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
-                alt=""
-              />
-              <img
-                className="absolute -bottom-12 -right-12 origin-bottom-right scale-75 rounded-md"
-                src="https://images.unsplash.com/photo-1522444195799-478538b28823?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
-                alt=""
-              />
-              {/* <Image
-                style={{
-                  position: `absolute`,
-                  bottom: `-3rem`,
-                  right: `-3rem`,
-                  transformOrigin: `bottom right`,
-                }}
-                className="scale-100 rounded-md"
-                src={cleaningPlant}
+                src={house}
                 layout="responsive"
-                alt="lullaby house cleaning specialists cleaning plants"
-              /> */}
+                alt="Photo by Jason Briscoe on Unsplash"
+              />
+              <Image
+                className="absolute -bottom-12 -right-12 origin-bottom-right scale-75 rounded-md"
+                src={dogBored}
+                layout="responsive"
+                alt="Photo by Brina Blum on Unsplash"
+              />
             </div>
           </div>
           {addressFolio && addressFolio.status !== 200 ? (
