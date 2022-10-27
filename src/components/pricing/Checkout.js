@@ -60,11 +60,11 @@ export const Checkout = () => {
                   key={product.id}
                   className="flex items-start space-x-4 py-6"
                 >
-                  <img
+                  {/* <img
                     src={product.imageSrc}
                     alt={product.imageAlt}
                     className="h-20 w-20 flex-none rounded-md object-cover object-center"
-                  />
+                  /> */}
                   <div className="flex-auto space-y-1">
                     <h3 className="text-white">{product.name}</h3>
                     <p>{product.color}</p>

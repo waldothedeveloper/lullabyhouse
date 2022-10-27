@@ -2,11 +2,11 @@ import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
 import { DarkModeButton } from '@/components/DarkModeButton'
 import { Disclosure } from '@headlessui/react'
-// import Image from 'next/future/image'
+import Image from 'next/future/image'
 import Link from 'next/link'
 import { checkRedirectURL } from '@/utils/checkRedirectURL'
-// import logo from '@/images/one_more_logo.png'
 import { useUser } from '@auth0/nextjs-auth0'
+import userImg from '@/images/user.jpg'
 
 export const Header = () => {
   const { user } = useUser()
@@ -144,10 +144,11 @@ export const Header = () => {
             <div className="border-t border-slate-200 pt-4 pb-3">
               <div className="flex items-center px-4 sm:px-6">
                 <div className="flex-shrink-0">
-                  <img
+                  <Image
+                    src={userImg}
+                    alt="user image"
+                    layout="responsive"
                     className="h-10 w-10 rounded-full"
-                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                    alt=""
                   />
                 </div>
                 <div className="ml-3">
