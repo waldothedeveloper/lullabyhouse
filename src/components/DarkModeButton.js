@@ -9,7 +9,6 @@ import { useTheme } from 'next-themes'
 export const DarkModeButton = () => {
   const [mounted, setMounted] = useState(false)
   const { theme, setTheme } = useTheme()
-  console.log('theme: ', theme)
   const [enabled, setEnabled] = useState(theme === 'dark' ? true : false)
 
   // useEffect only runs on the client, so now we can safely show the UI
@@ -18,7 +17,7 @@ export const DarkModeButton = () => {
   }, [])
 
   if (!mounted) {
-    return <div>Loading Squeleton...</div>
+    return null
   }
   //
   return (
