@@ -87,7 +87,7 @@ export const PropertyDetails = ({ propertyDetails }) => {
                   className={
                     Number(livableArea <= 0)
                       ? `rounded-lg bg-slate-200 px-1 text-base font-medium text-slate-800 dark:text-slate-300`
-                      : 'rounded-lg bg-teal-200 px-1 text-base font-medium text-slate-800 dark:text-slate-300'
+                      : 'rounded-lg bg-teal-200 px-1 text-base font-medium text-slate-800 dark:bg-transparent dark:text-slate-300'
                   }
                 >
                   {Number(livableArea) <= 0 ? `-` : `${livableArea} sq.ft.`}
