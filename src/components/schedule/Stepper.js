@@ -4,7 +4,7 @@ import { scheduleSteps } from '@/utils/scheduleSteps'
 import { useSchedule } from '@/context/provideScheduleContext'
 
 export const Stepper = () => {
-  const { context, setContext } = useSchedule()
+  const { context, dispatch } = useSchedule()
 
   //
   return (
@@ -26,7 +26,7 @@ export const Stepper = () => {
         </div>
       </nav>
       <button
-        onClick={() => setContext(scheduleSteps)}
+        onClick={() => dispatch({ type: 'reset', data: scheduleSteps })}
         className="my-3 ml-1 text-sm font-medium text-rose-700"
       >
         Reset Progress
