@@ -6,6 +6,7 @@ const scheduleContext = createContext(null)
 
 export const ProvideSchedule = ({ children }) => {
   const schedule = useStepper()
+
   return (
     <scheduleContext.Provider value={schedule}>
       {children}
