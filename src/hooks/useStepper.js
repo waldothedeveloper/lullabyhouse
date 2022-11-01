@@ -45,6 +45,9 @@ const reducer = (state, action) => {
           },
         },
       }
+    case 'reset':
+      return createSchedule()
+
     default:
       break
   }
