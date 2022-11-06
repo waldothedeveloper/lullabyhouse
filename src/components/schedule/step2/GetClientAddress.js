@@ -157,7 +157,11 @@ export const GetClientAddress = () => {
                       leaveTo="opacity-0"
                     >
                       {showNextStep && (
-                        <NextStep step="1" customerAddress={validAddress} />
+                        <NextStep
+                          step="1"
+                          customerAddress={validAddress}
+                          propertyDetails={addressDetails}
+                        />
                       )}
                     </Transition>
                   </div>

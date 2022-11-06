@@ -23,7 +23,7 @@ export const Step3Wrapper = () => {
     currentMonth,
     firstDayCurrentMonth,
     handleExtraSelect,
-    setSelectedService,
+    handleSelectedService,
     selectedService,
     extrasSelected,
   } = useForm()
@@ -49,7 +49,7 @@ export const Step3Wrapper = () => {
             <Frequency
               errors={errors}
               selectedService={selectedService}
-              setSelectedService={setSelectedService}
+              handleSelectedService={handleSelectedService}
             />
             <CalendarWrapper
               errors={errors}

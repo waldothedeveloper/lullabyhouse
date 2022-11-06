@@ -31,7 +31,7 @@ export const ServiceTypes = () => {
       <div className="mt-12 divide-y divide-slate-200 overflow-hidden rounded-lg bg-slate-200 shadow sm:grid sm:grid-cols-2 sm:gap-px sm:divide-y-0 lg:grid-cols-3">
         {typesOfCleaningServices.map((service, idx) => (
           <div
-            key={service.title}
+            key={service.id}
             className={classNames(
               idx === 0
                 ? 'rounded-tl-lg rounded-tr-lg sm:rounded-tr-none'
@@ -56,7 +56,7 @@ export const ServiceTypes = () => {
               <h3 className="text-lg font-medium">
                 <button
                   onClick={() => {
-                    dispatch({ type: 1, data: service.title })
+                    dispatch({ type: 1, data: service })
                     router.push(`/schedule/start`)
                   }}
                   className="focus:outline-none dark:text-slate-100"

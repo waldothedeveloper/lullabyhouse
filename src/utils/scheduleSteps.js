@@ -4,8 +4,8 @@ export const scheduleSteps = {
     href: '/schedule/cleaningServiceType',
     title: `Choose a Service`,
     status: `current`,
-    selectedService: null,
     description: `What type of cleaning service are you looking for?`,
+    typesOfServices: [],
   },
   address: {
     id: 2,
@@ -14,7 +14,7 @@ export const scheduleSteps = {
     status: 'upcoming',
     verifiedAddress: null,
     description:
-      "Let's  get the details of your house for a more accurate estimate",
+      "Let's get the details of your house for a more accurate estimate",
   },
   date: {
     id: 3,

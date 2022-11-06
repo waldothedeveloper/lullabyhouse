@@ -3,5 +3,9 @@ import { useState } from 'react'
 export const useFrequency = () => {
   const [selectedService, setSelectedService] = useState(null)
 
-  return { selectedService, setSelectedService }
+  const handleSelectedService = (data) => {
+    setSelectedService(data)
+  }
+
+  return { selectedService, handleSelectedService }
 }

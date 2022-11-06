@@ -13,7 +13,7 @@ export const Header = () => {
   return (
     <Disclosure
       as="nav"
-      className="relative w-full bg-white shadow dark:bg-slate-800"
+      className="relative z-50 w-full bg-white shadow dark:bg-slate-800"
     >
       {({ open }) => (
         <>

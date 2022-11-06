@@ -16,7 +16,7 @@ export const useForm = () => {
   const [errors, setErrors] = useState({})
   const [isSubmitting, setIsSubmitting] = useState(false)
   const { extrasSelected, handleExtraSelect } = useExtras()
-  const { selectedService, setSelectedService } = useFrequency()
+  const { selectedService, handleSelectedService } = useFrequency()
   const {
     today,
     days,
@@ -94,7 +94,7 @@ export const useForm = () => {
     currentMonth,
     firstDayCurrentMonth,
     handleExtraSelect,
-    setSelectedService,
+    handleSelectedService,
     selectedService,
     extrasSelected,
   }
