@@ -6,7 +6,11 @@ import { classNames } from '@/utils/classNames'
 import { serviceFrequency } from '@/utils/services'
 
 //
-export const Frequency = ({ selectedService, setSelectedService, errors }) => {
+export const Frequency = ({
+  selectedService,
+  handleSelectedService,
+  errors,
+}) => {
   return (
     <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-slate-200 sm:pt-5">
       <label
@@ -20,7 +24,7 @@ export const Frequency = ({ selectedService, setSelectedService, errors }) => {
         Choose your Frequency
       </label>
       <div className="mt-1 sm:col-span-2 sm:mt-0">
-        <RadioGroup value={selectedService} onChange={setSelectedService}>
+        <RadioGroup value={selectedService} onChange={handleSelectedService}>
           <div className="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-3 sm:gap-x-4">
             {serviceFrequency.map((service) => (
               <RadioGroup.Option
@@ -84,6 +88,6 @@ export const Frequency = ({ selectedService, setSelectedService, errors }) => {
 
 Frequency.propTypes = {
   selectedService: PropTypes.object,
-  setSelectedService: PropTypes.func,
+  handleSelectedService: PropTypes.func,
   errors: PropTypes.object,
 }

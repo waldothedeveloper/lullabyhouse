@@ -8,7 +8,7 @@ export const useExtras = () => {
     return setExtrasSelected((prevState) => {
       const extraToBeUpdated = prevState.map((obj) => {
         if (obj.id === elem.id) {
-          return { ...obj, checked: true }
+          return { ...obj, checked: !obj.checked }
         }
         return obj
       })

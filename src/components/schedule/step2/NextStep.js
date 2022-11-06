@@ -3,13 +3,13 @@ import PropTypes from 'prop-types'
 import { useRouter } from 'next/router'
 import { useSchedule } from '@/context/provideScheduleContext'
 //
-export const NextStep = ({ customerAddress }) => {
+export const NextStep = ({ customerAddress, propertyDetails }) => {
   const router = useRouter()
   const { dispatch } = useSchedule()
 
   const handleClick = () => {
     if (customerAddress && customerAddress.length > 0) {
-      dispatch({ type: 2, data: customerAddress })
+      dispatch({ type: 2, data: { customerAddress, propertyDetails } })
       router.push(`/schedule/start`)
     }
   }
