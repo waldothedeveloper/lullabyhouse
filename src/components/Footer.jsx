@@ -95,7 +95,7 @@ const navigation = {
 
 export const Footer = () => {
   return (
-    <footer className="dark:bg-slate-700" aria-labelledby="footer-heading">
+    <footer className="z-50 dark:bg-slate-700" aria-labelledby="footer-heading">
       <h2 id="footer-heading" className="sr-only">
         Footer
       </h2>

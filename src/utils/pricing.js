@@ -24,16 +24,20 @@ export const pricingTable = {
   },
   serviceFrecuency: {
     justOnce: {
-      discount: 0,
+      discount: 0.0,
+      selected: false,
     },
     everyWeek: {
-      discount: 20,
+      discount: 0.2,
+      selected: false,
     },
     every2Weeks: {
-      discount: 15,
+      discount: 0.15,
+      selected: false,
     },
     onceAMonth: {
-      discount: 10,
+      discount: 0.1,
+      selected: false,
     },
   },
   extras: {

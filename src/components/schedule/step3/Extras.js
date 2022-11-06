@@ -48,7 +48,14 @@ export const Extras = ({ extras, handleExtraSelect }) => {
                               {service.extra}
                             </label>
                             <p id={service.id} className="text-slate-500">
-                              {service.price}
+                              ${service.price}{' '}
+                              {service.flat
+                                ? `in total`
+                                : service.perLoad
+                                ? `per load`
+                                : service.perUnit
+                                ? `per unit`
+                                : ``}
                             </p>
                           </div>
                         </div>
