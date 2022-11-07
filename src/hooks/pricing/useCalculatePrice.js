@@ -27,9 +27,8 @@ export const useCalculatePrice = () => {
     const squareFeet = address?.propertyDetails?.livableArea
     const discount = date?.serviceFrecuency?.discount * 100 ?? 0
 
-    // 1.. get the basePrice which equals number of sq. feet * price_per_square_feet
     const basePrice = pricePerSquareFeet * squareFeet
-    // 2. get the total amount of extras -> this is just sum all of extras
+
     const totalExtras =
       date?.extras.length > 0
         ? date?.extras.reduce((prev, curr) => {
@@ -40,14 +39,17 @@ export const useCalculatePrice = () => {
             }
           }, 0)
         : 0
-    // 3. your totalPrice should be your basePrice + totalExtras
-    const totalPrice = basePrice + totalExtras
-    // 4. Your discounted price should be your totalPrice - your discount percentage. For example, 20% of $100 should be $80.
+
+    const petPremiumCharge = date?.pets?.price
+
+    const totalPrice = basePrice + totalExtras + petPremiumCharge
+
     const discountedPrice = totalPrice - (totalPrice * discount) / 100
 
     setPrice({
       basePrice: formatUSD.format(basePrice),
       discountedPrice: formatUSD.format(discountedPrice),
+      petPremiumUpCharge: formatUSD.format(petPremiumCharge),
       totalPrice: formatUSD.format(totalPrice),
       discount: formatPercentage.format(date?.serviceFrecuency?.discount),
       discountAmountInCurrency: formatUSD.format(

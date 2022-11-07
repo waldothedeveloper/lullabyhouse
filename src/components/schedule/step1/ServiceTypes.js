@@ -49,7 +49,12 @@ export const ServiceTypes = () => {
                   'inline-flex rounded-lg p-3 ring-4 ring-white dark:ring-slate-50'
                 )}
               >
-                <Image src={service.icon} width={50} height={50} />
+                <Image
+                  src={service.icon}
+                  width={50}
+                  height={50}
+                  alt="cleaning services at lullaby house"
+                />
               </span>
             </div>
             <div className="mt-8">

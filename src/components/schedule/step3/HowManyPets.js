@@ -27,7 +27,7 @@ export const HowManyPets = ({
         <div className="grid grid-cols-3 gap-3 sm:grid-cols-6">
           {petQuantity.map((option) => (
             <RadioGroup.Option
-              key={option.quantity}
+              key={option?.quantity}
               value={option}
               className={({ active, checked }) =>
                 classNames(
@@ -39,7 +39,9 @@ export const HowManyPets = ({
                 )
               }
             >
-              <RadioGroup.Label as="span">{option.quantity}</RadioGroup.Label>
+              <RadioGroup.Label as="span">
+                {option?.quantity === 5 ? `+5` : option?.quantity}
+              </RadioGroup.Label>
             </RadioGroup.Option>
           ))}
         </div>
