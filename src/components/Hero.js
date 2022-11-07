@@ -77,6 +77,7 @@ export const Hero = () => {
                   className="scale-110 transform rounded-lg"
                   src={team_of_janitors}
                   layout="fill"
+                  priority
                   alt="lullaby house crew cleaning customer house"
                 />
                 {/* <img

@@ -34,6 +34,8 @@ const reducer = (state, action) => {
         date: { ...state.date, status: 'current' },
       }
     case 3: {
+      const petQuantity = data?.petQuantity.filter((pet) => pet.checked)
+
       return {
         ...state,
         date: {
@@ -43,7 +45,13 @@ const reducer = (state, action) => {
           verifiedDateAndTime: data?.timeAndDateOfBooking,
           extras: data?.extrasSelected.filter((elem) => elem.checked),
           pets: {
-            quantiy: data?.petQuantity.filter((pet) => pet.checked),
+            quantity: petQuantity.length > 0 ? petQuantity[0].quantity : 0,
+            price:
+              petQuantity.length > 0
+                ? petQuantity[0].quantity >= 3
+                  ? 50
+                  : 25
+                : 0,
           },
         },
       }
@@ -59,6 +67,6 @@ const reducer = (state, action) => {
 
 export const useStepper = () => {
   const [context, dispatch] = useReducer(reducer, null, createSchedule)
-  console.log('context: ', context)
+  // console.log('context: ', context)
   return { context, dispatch }
 }

@@ -6,45 +6,45 @@ export const CheckoutBreakdown = ({ address, date, products, serviceType }) => {
   return (
     <div className="overflow-hidden">
       <div className="py-5">
-        <dl>
-          <div className="py-2 sm:grid sm:grid-cols-3 sm:gap-4">
+        <dl className="space-y-3">
+          <div className="space-y-1 py-2 sm:grid sm:grid-cols-3 sm:gap-4 md:space-y-0">
             <dt className="text-sm font-medium text-slate-300">
               Type of Service
             </dt>
-            <dd className="mt-1 text-sm text-slate-50 sm:col-span-2 sm:mt-0">
+            <dd className="text-sm text-slate-50 sm:col-span-2">
               {serviceType?.typesOfServices?.title} Cleaning
             </dd>
           </div>
-          <div className="py-2 sm:grid sm:grid-cols-3 sm:gap-4">
+          <div className="space-y-1 py-2 sm:grid sm:grid-cols-3 sm:gap-4 md:space-y-0">
             <dt className="text-sm font-medium text-slate-300">Frequency</dt>
-            <dd className="mt-1 text-sm text-slate-50 sm:col-span-2 sm:mt-0">
+            <dd className="text-sm text-slate-50 sm:col-span-2">
               {date?.serviceFrecuency?.title}
             </dd>
           </div>
-          <div className="py-2 sm:grid sm:grid-cols-3 sm:gap-4">
+          <div className="space-y-1 py-2 sm:grid sm:grid-cols-3 sm:gap-4 md:space-y-0">
             <dt className="text-sm font-medium text-slate-300">Date</dt>
-            <dd className="mt-1 text-sm text-slate-50 sm:col-span-2 sm:mt-0">
+            <dd className="text-sm text-slate-50 sm:col-span-2">
               {format(new Date(date?.verifiedDateAndTime), 'PPPP')}
             </dd>
           </div>
-          <div className="py-2 sm:grid sm:grid-cols-3 sm:gap-4">
+          <div className="space-y-1 py-2 sm:grid sm:grid-cols-3 sm:gap-4 md:space-y-0">
             <dt className="text-sm font-medium text-slate-300">Time</dt>
-            <dd className="mt-1 text-sm text-slate-50 sm:col-span-2 sm:mt-0">
+            <dd className="text-sm text-slate-50 sm:col-span-2">
               {format(new Date(date?.verifiedDateAndTime), 'p')}
             </dd>
           </div>
-          <div className="py-2 sm:grid sm:grid-cols-3 sm:gap-4">
+          <div className="space-y-1 py-2 sm:grid sm:grid-cols-3 sm:gap-4 md:space-y-0">
             <dt className="text-sm font-medium text-slate-300">Address</dt>
-            <dd className="mt-1 text-sm text-slate-50 sm:col-span-2 sm:mt-0">
+            <dd className="text-sm text-slate-50 sm:col-span-2">
               {address?.verifiedAddress}
             </dd>
           </div>
 
-          <div className="py-2 sm:grid sm:grid-cols-3 sm:gap-4">
+          <div className="space-y-1 py-2 sm:grid sm:grid-cols-3 sm:gap-4 md:space-y-0">
             <dt className="flex flex-col text-sm font-medium text-slate-300">
               BedRooms
             </dt>
-            <dd className="mt-1 text-sm text-slate-50 sm:col-span-2 sm:mt-0">
+            <dd className="text-sm text-slate-50 sm:col-span-2">
               {products &&
                 Array.isArray(products) &&
                 products[0]?.property?.beds}
@@ -52,7 +52,7 @@ export const CheckoutBreakdown = ({ address, date, products, serviceType }) => {
             <dt className="flex flex-col text-sm font-medium text-slate-300">
               BathRooms
             </dt>
-            <dd className="mt-1 text-sm text-slate-50 sm:col-span-2 sm:mt-0">
+            <dd className="text-sm text-slate-50 sm:col-span-2">
               {products &&
                 Array.isArray(products) &&
                 products[0]?.property?.bath}
@@ -60,7 +60,7 @@ export const CheckoutBreakdown = ({ address, date, products, serviceType }) => {
             <dt className="flex flex-col text-sm font-medium text-slate-300">
               Half BathRooms
             </dt>
-            <dd className="mt-1 text-sm text-slate-50 sm:col-span-2 sm:mt-0">
+            <dd className="text-sm text-slate-50 sm:col-span-2">
               {products &&
                 Array.isArray(products) &&
                 products[0]?.property?.halfBath}
@@ -68,7 +68,7 @@ export const CheckoutBreakdown = ({ address, date, products, serviceType }) => {
             <dt className="flex flex-col text-sm font-medium text-slate-300">
               Livable Area
             </dt>
-            <dd className="mt-1 text-sm text-slate-50 sm:col-span-2 sm:mt-0">
+            <dd className="text-sm text-slate-50 sm:col-span-2">
               {products &&
                 Array.isArray(products) &&
                 products[0]?.property?.livableArea}{' '}
@@ -77,20 +77,39 @@ export const CheckoutBreakdown = ({ address, date, products, serviceType }) => {
             <dt className="flex flex-col text-sm font-medium text-slate-300">
               Floors
             </dt>
-            <dd className="mt-1 text-sm text-slate-50 sm:col-span-2 sm:mt-0">
+            <dd className="text-sm text-slate-50 sm:col-span-2">
               {products &&
                 Array.isArray(products) &&
                 products[0]?.property?.floors}
             </dd>
+            {/* PETS */}
+            {date?.pets?.quantity > 0 && (
+              <>
+                <dt className="flex flex-col text-sm font-medium text-slate-300">
+                  Pets
+                  <span className="block max-w-xs text-xs">
+                    As much as we love our furry friends, they do add to the
+                    work of a cleaner. To compensate for this, we charge a small
+                    premium.
+                  </span>
+                </dt>
+                <dd className="text-sm text-slate-50 sm:col-span-2">
+                  {date?.pets?.quantity}
+                </dd>
+              </>
+            )}
           </div>
           {/* Extras */}
           {date?.extras.map((elem) => (
-            <div key={elem.id} className="py-2 sm:grid sm:grid-cols-3 sm:gap-4">
+            <div
+              key={elem.id}
+              className="space-y-1 py-2 sm:grid sm:grid-cols-3 sm:gap-4"
+            >
               <dt className="text-sm font-medium text-slate-300">
                 {' '}
                 {elem.extra}
               </dt>
-              <dd className="mt-1 text-sm text-slate-50 sm:col-span-2 sm:mt-0">
+              <dd className="text-sm text-slate-50 sm:col-span-2">
                 ${elem.price}{' '}
                 {elem.flat
                   ? `total`

@@ -32,6 +32,7 @@ export const Overview = () => {
                 src={bModel}
                 placeholder="blur"
                 layout="fill"
+                alt="overview at lullaby house"
               />
             </div>
           </div>

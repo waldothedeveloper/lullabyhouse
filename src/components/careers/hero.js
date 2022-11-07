@@ -15,6 +15,7 @@ export const Hero = () => {
                 src={curvedLines}
                 layout="fill"
                 placeholder="blur"
+                alt="hero careers at lullaby house"
               />
             </div>
 
@@ -46,6 +47,7 @@ export const Hero = () => {
                 src={blue_cleaning_crew}
                 layout="fill"
                 placeholder="blur"
+                alt="hero careers at lullaby house"
               />
             </div>
 
