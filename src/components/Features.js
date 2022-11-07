@@ -56,6 +56,7 @@ export const Features = () => {
                   src={feature.imgSrc}
                   layout="fill"
                   priority
+                  alt="images of lullaby house customers"
                 />
               </div>
             </div>

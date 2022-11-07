@@ -4,6 +4,7 @@ import { ContactInformation } from '@/components/pricing/ContactInformation'
 import { Discount } from '@/components/pricing/Discount'
 import { Extras } from '@/components/pricing/Extras'
 import { PaymentInformation } from '@/components/pricing/PaymentInformation'
+import { PetsPremiumCharge } from '@/components/pricing/PetsPremiumCharge'
 import { SubTotal } from '@/components/pricing/SubTotal'
 import { Total } from '@/components/pricing/Total'
 import { TotalBeforeDiscount } from '@/components/pricing/TotalBeforeDiscount'
@@ -50,6 +51,8 @@ export const Checkout = () => {
               <SubTotal price={price} />
 
               <Extras date={date} />
+
+              <PetsPremiumCharge price={price} />
 
               <TotalBeforeDiscount price={price} />
 

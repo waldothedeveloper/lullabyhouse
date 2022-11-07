@@ -12,7 +12,7 @@ export const usePets = () => {
     { quantity: 2, checked: false },
     { quantity: 3, checked: false },
     { quantity: 4, checked: false },
-    { quantity: '+5', checked: false },
+    { quantity: 5, checked: false },
   ])
 
   // console.log('petQuantity: ', petQuantity)

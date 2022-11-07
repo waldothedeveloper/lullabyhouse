@@ -30,6 +30,7 @@ export const Testimonials = () => {
                 className="md:absolute md:bottom-0 md:origin-bottom-right md:scale-110 lg:scale-75 2xl:-mt-20 2xl:scale-100"
                 src={manSmiling}
                 layout="fill"
+                alt="testimonial customers"
               />
             </div>
           </div>
