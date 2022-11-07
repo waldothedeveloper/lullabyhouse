@@ -1,10 +1,12 @@
 import { CalendarWrapper } from '@/components/schedule/step3/CalendarWrapper'
 import { Extras } from '@/components/schedule/step3/Extras'
 import { Frequency } from '@/components/schedule/step3/Frequency'
+import { HavePets } from '@/components/schedule/step3/HavePets'
+import { HowManyPets } from '@/components/schedule/step3/HowManyPets'
 import Link from 'next/link'
 import { Toaster } from 'react-hot-toast'
+import { Transition } from '@headlessui/react'
 import { useForm } from '@/hooks/useForm'
-
 //
 
 //
@@ -26,6 +28,11 @@ export const Step3Wrapper = () => {
     handleSelectedService,
     selectedService,
     extrasSelected,
+    pets,
+    handlePets,
+    petQuantity,
+    handlePetQuantity,
+    selectedPetQuantity,
   } = useForm()
 
   //
@@ -64,6 +71,29 @@ export const Step3Wrapper = () => {
               currentMonth={currentMonth}
               firstDayCurrentMonth={firstDayCurrentMonth}
             />
+          </div>
+          <div className="py-12">
+            <HavePets pets={pets} handlePets={handlePets} />
+            <Transition
+              show={
+                pets.filter((pet) => pet.answer === 'Yes' && pet.checked)
+                  .length > 0
+                  ? true
+                  : false
+              }
+              enter="transition-opacity duration-75"
+              enterFrom="opacity-0"
+              enterTo="opacity-100"
+              leave="transition-opacity duration-150"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
+            >
+              <HowManyPets
+                petQuantity={petQuantity}
+                handlePetQuantity={handlePetQuantity}
+                selectedPetQuantity={selectedPetQuantity}
+              />
+            </Transition>
           </div>
           <Extras
             extras={extrasSelected}
