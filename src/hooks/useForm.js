@@ -5,6 +5,7 @@ import toast from 'react-hot-toast'
 import { useExtras } from '@/hooks/useExtras'
 import { useFrequency } from '@/hooks/useFrequency'
 import { useHandleCalendar } from '@/hooks/useHandleCalendar'
+import { usePets } from '@/hooks/usePets'
 import { useRouter } from 'next/router'
 import { useSchedule } from '@/context/provideScheduleContext'
 import { validate } from '@/utils/validateStep3'
@@ -16,6 +17,13 @@ export const useForm = () => {
   const [errors, setErrors] = useState({})
   const [isSubmitting, setIsSubmitting] = useState(false)
   const { extrasSelected, handleExtraSelect } = useExtras()
+  const {
+    pets,
+    handlePets,
+    petQuantity,
+    handlePetQuantity,
+    selectedPetQuantity,
+  } = usePets()
   const { selectedService, handleSelectedService } = useFrequency()
   const {
     today,
@@ -46,17 +54,29 @@ export const useForm = () => {
   }, [selectedService, timeAndDateOfBooking, isSubmitting])
 
   useEffect(() => {
-    if (timeAndDateOfBooking || selectedService || extrasSelected) {
+    if (
+      timeAndDateOfBooking ||
+      selectedService ||
+      extrasSelected ||
+      petQuantity
+    ) {
       dispatch({
         type: 3,
         data: {
           selectedService,
           timeAndDateOfBooking,
           extrasSelected,
+          petQuantity,
         },
       })
     }
-  }, [dispatch, extrasSelected, selectedService, timeAndDateOfBooking])
+  }, [
+    dispatch,
+    extrasSelected,
+    selectedService,
+    timeAndDateOfBooking,
+    petQuantity,
+  ])
 
   useEffect(() => {
     if (errors && Object.keys(errors).length === 0 && isSubmitting) {
@@ -97,5 +117,10 @@ export const useForm = () => {
     handleSelectedService,
     selectedService,
     extrasSelected,
+    pets,
+    handlePets,
+    petQuantity,
+    handlePetQuantity,
+    selectedPetQuantity,
   }
 }

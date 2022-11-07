@@ -42,6 +42,9 @@ const reducer = (state, action) => {
           serviceFrecuency: data?.selectedService,
           verifiedDateAndTime: data?.timeAndDateOfBooking,
           extras: data?.extrasSelected.filter((elem) => elem.checked),
+          pets: {
+            quantiy: data?.petQuantity.filter((pet) => pet.checked),
+          },
         },
       }
     }
@@ -56,5 +59,6 @@ const reducer = (state, action) => {
 
 export const useStepper = () => {
   const [context, dispatch] = useReducer(reducer, null, createSchedule)
+  console.log('context: ', context)
   return { context, dispatch }
 }
