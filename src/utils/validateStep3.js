@@ -2,7 +2,7 @@ import { isValid } from 'date-fns'
 import { serviceFrequency } from '@/utils/services'
 //
 export const validate = (frequency, dateAndTime) => {
-  let errors = {}
+  const errors = {}
 
   const noServiceFrequencySelected = serviceFrequency.filter(
     (elem) => elem?.title === frequency?.title

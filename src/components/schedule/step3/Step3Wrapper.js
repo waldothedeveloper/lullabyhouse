@@ -4,6 +4,7 @@ import { Frequency } from '@/components/schedule/step3/Frequency'
 import { HavePets } from '@/components/schedule/step3/HavePets'
 import { HowManyPets } from '@/components/schedule/step3/HowManyPets'
 import Link from 'next/link'
+import { Notes } from '@/components/schedule/step3/Notes'
 import { Toaster } from 'react-hot-toast'
 import { Transition } from '@headlessui/react'
 import { useForm } from '@/hooks/useForm'
@@ -33,6 +34,8 @@ export const Step3Wrapper = () => {
     petQuantity,
     handlePetQuantity,
     selectedPetQuantity,
+    handleNotes,
+    notes,
   } = useForm()
 
   //
@@ -99,6 +102,7 @@ export const Step3Wrapper = () => {
             extras={extrasSelected}
             handleExtraSelect={handleExtraSelect}
           />
+          <Notes handleNotes={handleNotes} notes={notes} />
         </div>
 
         <div className="pt-5">

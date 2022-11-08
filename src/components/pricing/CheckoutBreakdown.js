@@ -121,6 +121,17 @@ export const CheckoutBreakdown = ({ address, date, products, serviceType }) => {
               </dd>
             </div>
           ))}
+          {/* NOTES */}
+          {date?.notes && (
+            <div className="space-y-1 py-2 sm:grid sm:grid-cols-3 sm:gap-4 md:space-y-0">
+              <dt className="flex flex-col text-sm font-medium text-slate-300">
+                Notes
+              </dt>
+              <dd className="text-sm text-slate-50 sm:col-span-2">
+                {date?.notes}
+              </dd>
+            </div>
+          )}
         </dl>
       </div>
     </div>
