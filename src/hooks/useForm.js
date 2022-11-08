@@ -5,6 +5,7 @@ import toast from 'react-hot-toast'
 import { useExtras } from '@/hooks/useExtras'
 import { useFrequency } from '@/hooks/useFrequency'
 import { useHandleCalendar } from '@/hooks/useHandleCalendar'
+import { useNotes } from '@/hooks/useNotes'
 import { usePets } from '@/hooks/usePets'
 import { useRouter } from 'next/router'
 import { useSchedule } from '@/context/provideScheduleContext'
@@ -39,6 +40,8 @@ export const useForm = () => {
     firstDayCurrentMonth,
   } = useHandleCalendar()
 
+  const { handleNotes, notes } = useNotes()
+
   // show notification errors
   useEffect(() => {
     if (errors && Object.keys(errors).length > 0) {
@@ -58,7 +61,8 @@ export const useForm = () => {
       timeAndDateOfBooking ||
       selectedService ||
       extrasSelected ||
-      petQuantity
+      petQuantity ||
+      notes
     ) {
       dispatch({
         type: 3,
@@ -67,6 +71,7 @@ export const useForm = () => {
           timeAndDateOfBooking,
           extrasSelected,
           petQuantity,
+          notes,
         },
       })
     }
@@ -76,6 +81,7 @@ export const useForm = () => {
     selectedService,
     timeAndDateOfBooking,
     petQuantity,
+    notes,
   ])
 
   useEffect(() => {
@@ -89,7 +95,7 @@ export const useForm = () => {
     if (event) event.preventDefault()
     setIsSubmitting(true)
     setErrors(validate(selectedService, timeAndDateOfBooking))
-    // this will allow to submit the form if there's not errors, and mandatory options have been selected
+    // this will allow to submit the form if there's not errors, and after all mandatory options have been selected
     if (
       errors &&
       Object.keys(errors).length === 0 &&
@@ -122,5 +128,7 @@ export const useForm = () => {
     petQuantity,
     handlePetQuantity,
     selectedPetQuantity,
+    handleNotes,
+    notes,
   }
 }
