@@ -15,5 +15,11 @@ export const ProvideSchedule = ({ children }) => {
 }
 
 export const useSchedule = () => {
-  return useContext(scheduleContext)
+  const context = useContext(scheduleContext)
+  if (!context) {
+    throw Error(
+      `Illegal consumption of useSchedule Context: Must be consumed within the scope of Schedule`
+    )
+  }
+  return context
 }
