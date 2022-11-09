@@ -34,7 +34,7 @@ const reducer = (state, action) => {
         date: { ...state.date, status: 'current' },
       }
     case 3: {
-      const petQuantity = data?.petQuantity.filter((pet) => pet.checked)
+      const petQuantity = data?.petQuantity?.filter((pet) => pet.checked)
 
       return {
         ...state,
@@ -68,6 +68,5 @@ const reducer = (state, action) => {
 
 export const useStepper = () => {
   const [context, dispatch] = useReducer(reducer, null, createSchedule)
-  
   return { context, dispatch }
 }
