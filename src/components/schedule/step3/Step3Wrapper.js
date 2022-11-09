@@ -76,7 +76,7 @@ export const Step3Wrapper = () => {
             />
           </div>
           <div className="py-12">
-            <HavePets pets={pets} handlePets={handlePets} />
+            <HavePets pets={pets} handlePets={handlePets} errors={errors} />
             <Transition
               show={
                 pets.filter((pet) => pet.answer === 'Yes' && pet.checked)

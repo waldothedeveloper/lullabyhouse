@@ -1,12 +1,26 @@
-export const HavePets = ({ pets, handlePets }) => {
+import PropTypes from 'prop-types'
+
+export const HavePets = ({ pets, handlePets, errors }) => {
   return (
-    <div>
+    <div className="animate-pulse">
       <div className="flex items-center">
-        <label className="text-base font-medium text-slate-900">
+        <label
+          className={
+            errors?.pets
+              ? 'text-base font-medium text-red-500'
+              : 'text-base font-medium text-slate-900'
+          }
+        >
           Pets are important to us
         </label>
       </div>
-      <p className="text-sm leading-5 text-slate-500">
+      <p
+        className={
+          errors?.pets
+            ? 'text-sm leading-5 text-red-500'
+            : 'text-sm leading-5 text-slate-500'
+        }
+      >
         Are there any furry or feathered household pets?
       </p>
       <fieldset className="mt-4">
@@ -19,11 +33,19 @@ export const HavePets = ({ pets, handlePets }) => {
                 onChange={() => handlePets(pet)}
                 name="notification-method"
                 type="radio"
-                className="h-4 w-4 border-slate-300 text-rose-600 focus:ring-rose-500"
+                className={
+                  errors?.pets
+                    ? 'h-4 w-4 border-red-500 text-rose-600 focus:ring-rose-500'
+                    : 'h-4 w-4 border-slate-300 text-rose-600 focus:ring-rose-500'
+                }
               />
               <label
                 htmlFor={pet.id}
-                className="ml-3 block text-sm font-medium text-slate-700"
+                className={
+                  errors?.pets
+                    ? 'ml-3 block text-sm font-medium text-red-500'
+                    : 'ml-3 block text-sm font-medium text-slate-700'
+                }
               >
                 {pet.answer}
               </label>
@@ -33,4 +55,9 @@ export const HavePets = ({ pets, handlePets }) => {
       </fieldset>
     </div>
   )
+}
+HavePets.propTypes = {
+  pets: PropTypes.array,
+  handlePets: PropTypes.func,
+  errors: PropTypes.object,
 }

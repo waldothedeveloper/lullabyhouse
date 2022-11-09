@@ -61,22 +61,22 @@ export const useForm = () => {
   // populate local error state if the form has errors
   useEffect(() => {
     if (isSubmitting) {
-      setErrors(validate(selectedService, timeAndDateOfBooking))
+      setErrors(validate(selectedService, timeAndDateOfBooking, pets))
     }
-  }, [selectedService, timeAndDateOfBooking, isSubmitting])
+  }, [selectedService, timeAndDateOfBooking, isSubmitting, pets])
 
   // dismiss notification errors
   useEffect(() => {
-    if (noErrors && isSubmitting) {
+    if (noErrors) {
       toast.dismiss()
       setIsSubmitting(false)
     }
-  }, [noErrors, errors, isSubmitting])
+  }, [noErrors])
 
   const handleSubmit = (event) => {
     if (event) event.preventDefault()
     setIsSubmitting(true)
-    setErrors(validate(selectedService, timeAndDateOfBooking))
+    setErrors(validate(selectedService, timeAndDateOfBooking, pets))
     // submit your changes
     dispatch({
       type: 3,
