@@ -4,10 +4,11 @@ import toast from 'react-hot-toast'
 export const notify = (errors) => {
   return (
     errors &&
-    Object.keys(errors).map((error, idx) => {
+    Object.keys(errors).map((error) => {
       return toast.custom(
         (t) => (
           <div
+            id={`${t.id}`}
             key={errors[error.id]}
             className={`${
               t.visible ? 'animate-enter' : 'animate-leave'
@@ -37,7 +38,7 @@ export const notify = (errors) => {
             </div>
           </div>
         ),
-        { id: `${errors[error]}-${idx}` }
+        { id: `${errors[error]}` }
       )
     })
   )
