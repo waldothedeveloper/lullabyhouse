@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 
+import { isValueAnObject } from '@/utils/isValueAnObject'
 import { notify } from '@/components/Notifications'
 import toast from 'react-hot-toast'
 import { useExtras } from '@/hooks/useExtras'
@@ -18,6 +19,7 @@ export const useForm = () => {
   const [errors, setErrors] = useState({})
   const [isSubmitting, setIsSubmitting] = useState(false)
   const { extrasSelected, handleExtraSelect } = useExtras()
+
   const {
     pets,
     handlePets,
@@ -25,7 +27,9 @@ export const useForm = () => {
     handlePetQuantity,
     selectedPetQuantity,
   } = usePets()
+
   const { selectedService, handleSelectedService } = useFrequency()
+
   const {
     today,
     days,
@@ -42,6 +46,11 @@ export const useForm = () => {
 
   const { handleNotes, notes } = useNotes()
 
+  // checking the type of some values
+  const bookingDate = isValueAnObject(timeAndDateOfBooking)
+  const frequency = isValueAnObject(selectedService)
+  const noErrors = errors && Object.keys(errors).length === 0
+
   // show notification errors
   useEffect(() => {
     if (errors && Object.keys(errors).length > 0) {
@@ -56,52 +65,31 @@ export const useForm = () => {
     }
   }, [selectedService, timeAndDateOfBooking, isSubmitting])
 
+  // dismiss notification errors
   useEffect(() => {
-    if (
-      timeAndDateOfBooking ||
-      selectedService ||
-      extrasSelected ||
-      petQuantity ||
-      notes
-    ) {
-      dispatch({
-        type: 3,
-        data: {
-          selectedService,
-          timeAndDateOfBooking,
-          extrasSelected,
-          petQuantity,
-          notes,
-        },
-      })
-    }
-  }, [
-    dispatch,
-    extrasSelected,
-    selectedService,
-    timeAndDateOfBooking,
-    petQuantity,
-    notes,
-  ])
-
-  useEffect(() => {
-    if (errors && Object.keys(errors).length === 0 && isSubmitting) {
+    if (noErrors && isSubmitting) {
       toast.dismiss()
       setIsSubmitting(false)
     }
-  }, [errors, isSubmitting])
+  }, [noErrors, errors, isSubmitting])
 
   const handleSubmit = (event) => {
     if (event) event.preventDefault()
     setIsSubmitting(true)
     setErrors(validate(selectedService, timeAndDateOfBooking))
+    // submit your changes
+    dispatch({
+      type: 3,
+      data: {
+        selectedService,
+        timeAndDateOfBooking,
+        extrasSelected,
+        petQuantity,
+        notes,
+      },
+    })
     // this will allow to submit the form if there's not errors, and after all mandatory options have been selected
-    if (
-      errors &&
-      Object.keys(errors).length === 0 &&
-      timeAndDateOfBooking &&
-      selectedService
-    ) {
+    if (noErrors && bookingDate && frequency) {
       router.push(`/checkout`)
     }
   }
