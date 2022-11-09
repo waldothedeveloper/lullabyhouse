@@ -34,9 +34,8 @@ export const useCalculatePrice = () => {
         ? date?.extras.reduce((prev, curr) => {
             if (curr.flat) {
               return prev + curr.price
-            } else {
-              return prev + 0
             }
+            return prev + 0
           }, 0)
         : 0
 
