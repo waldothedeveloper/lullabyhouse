@@ -28,10 +28,9 @@ export const DarkModeButton = () => {
           if (theme === 'dark') {
             setTheme('light')
             return false
-          } else {
-            setTheme('dark')
-            return true
           }
+          setTheme('dark')
+          return true
         })
       }
       className={classNames(
