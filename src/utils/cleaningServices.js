@@ -34,7 +34,7 @@ export const typesOfCleaningServices = [
     price_per_square_feet: 0.22,
     title: 'Deep',
     key: 'deep',
-    description: `All included in basic, extended time for areas of focus, add-Ons such as inside oven, inside refrigerator, inside cabinets.`,
+    description: `All included in basic, extended time for areas of focus, add-Ons such as inside oven, inside the refrigerator, inside cabinets.`,
     href: '#',
     icon: deep,
     iconForeground: 'text-purple-700',
