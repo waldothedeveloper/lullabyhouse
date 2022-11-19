@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 
 export const HavePets = ({ pets, handlePets, errors }) => {
   return (
-    <div className="animate-pulse">
+    <div className={errors?.pets ? 'animate-pulse' : 'block'}>
       <div className="flex items-center">
         <label
           className={

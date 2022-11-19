@@ -21,6 +21,14 @@ export default function Document() {
           src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_PLACES}&libraries=places`}
           strategy="beforeInteractive"
         />
+        <Script
+          src={
+            process.env.NODE_ENV !== 'production'
+              ? 'https://sandbox.web.squarecdn.com/v1/square.js'
+              : 'https://web.squarecdn.com/v1/square.js'
+          }
+          strategy="beforeInteractive"
+        />
       </Head>
       <body className="h-full dark:bg-slate-800">
         <Main />
@@ -33,8 +41,3 @@ export default function Document() {
     </Html>
   )
 }
-
-// ;<script
-//   src="//code.tidio.co/wiwd8tuym33ob9lfloqo8obi4iutqt4y.js"
-//   async
-// ></script>
