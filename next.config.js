@@ -1,7 +1,10 @@
 /** @type {import('next').NextConfig} */
+const withTM = require('next-transpile-modules')(['@square/web-sdk'])
+
 const nextConfig = {
   reactStrictMode: true,
   experimental: {
+    esmExternals: 'loose',
     newNextLinkBehavior: true,
     scrollRestoration: true,
     images: {
@@ -17,4 +20,5 @@ const nextConfig = {
   },
 }
 
-module.exports = nextConfig
+// module.exports = nextConfig
+module.exports = withTM(nextConfig)
