@@ -5,8 +5,8 @@ import { useSchedule } from '@/context/provideScheduleContext'
 const formatUSD = new Intl.NumberFormat('en-US', {
   style: 'currency',
   currency: 'USD',
-  maximumFractionDigits: 0,
-  minimumFractionDigits: 0,
+  maximumFractionDigits: 2,
+  minimumFractionDigits: 2,
   // roundingIncrement: 5,
 })
 
@@ -54,6 +54,7 @@ export const useCalculatePrice = () => {
       discountAmountInCurrency: formatUSD.format(
         date?.serviceFrecuency?.discount * totalPrice
       ),
+      notFormattedPrice: discountedPrice,
     })
     setProducts([
       {

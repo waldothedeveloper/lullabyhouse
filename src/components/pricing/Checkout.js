@@ -15,7 +15,7 @@ import { usePricing } from '@/hooks/pricing/usePricing'
 //
 export const Checkout = () => {
   const { price, products, date, address, typeOfCleaning } = useCalculatePrice()
-  const { card, handleClick } = usePricing()
+  const { card, handleClick, disableSubmitButton } = usePricing(price)
   //
   return (
     <>
@@ -87,7 +87,10 @@ export const Checkout = () => {
                   leaveTo="opacity-0"
                 >
                   <ContactInformation />
-                  <PaymentInfo handleClick={handleClick} />
+                  <PaymentInfo
+                    handleClick={handleClick}
+                    disableSubmitButton={disableSubmitButton}
+                  />
                 </Transition>
               )}
             </div>
