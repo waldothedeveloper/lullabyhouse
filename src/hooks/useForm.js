@@ -80,8 +80,9 @@ export const useForm = () => {
       bookingDate &&
       frequency &&
       pets.filter((pet) => pet.checked).length > 0
-    )
-      true
+    ) {
+      return true
+    }
     return false
   }
 
