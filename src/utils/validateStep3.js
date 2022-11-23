@@ -10,18 +10,10 @@ export const validate = (frequency, dateAndTime, pets) => {
   )
   if (noServiceFrequencySelected.length === 0) {
     errors.frequency = `To get a quote, choose one of the available cleaning frequencies`
-    // errors = {
-    //   frequency: `To get a quote, choose one of the available cleaning frequencies`,
-    //   id: `freq_id`,
-    // }
   }
 
   if (!dateAndTime || !isValid(dateAndTime)) {
     errors.dateAndTime = `Please select a date and a time for your cleaning quote`
-    // errors = {
-    //   dateAndTime: `Please select a date and a time for your cleaning quote`,
-    //   id: `date_n_time`,
-    // }
   }
 
   const doesUserHasPets =

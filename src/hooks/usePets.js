@@ -15,7 +15,6 @@ export const usePets = () => {
     { quantity: 5, checked: false },
   ])
 
-  // console.log('petQuantity: ', petQuantity)
   const petQuant = [...petQuantity]
 
   const resetPetChecked = () => {
@@ -34,7 +33,6 @@ export const usePets = () => {
       resetPetChecked()
     } else {
       thePets[idx + 1].checked = false
-      // resetPetChecked()
     }
 
     setPets(thePets)
