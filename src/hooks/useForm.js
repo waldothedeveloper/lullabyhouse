@@ -17,7 +17,7 @@ export const useForm = () => {
   const router = useRouter()
   const { dispatch } = useSchedule()
   const [errors, setErrors] = useState({})
-  console.log('errors: ', errors)
+  
   const [isSubmitting, setIsSubmitting] = useState(false)
   const { extrasSelected, handleExtraSelect } = useExtras()
 
@@ -80,8 +80,9 @@ export const useForm = () => {
       bookingDate &&
       frequency &&
       pets.filter((pet) => pet.checked).length > 0
-    )
-      true
+    ) {
+      return true
+    }
     return false
   }
 
