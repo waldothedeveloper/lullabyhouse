@@ -17,6 +17,7 @@ export const useForm = () => {
   const router = useRouter()
   const { dispatch } = useSchedule()
   const [errors, setErrors] = useState({})
+  console.log('errors: ', errors)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const { extrasSelected, handleExtraSelect } = useExtras()
 
@@ -49,7 +50,6 @@ export const useForm = () => {
   // checking the type of some values
   const bookingDate = isValueAnObject(timeAndDateOfBooking)
   const frequency = isValueAnObject(selectedService)
-  const noErrors = errors && Object.keys(errors).length === 0
 
   // show notification errors
   useEffect(() => {
@@ -67,11 +67,23 @@ export const useForm = () => {
 
   // dismiss notification errors
   useEffect(() => {
-    if (noErrors) {
+    if (errors && Object.keys(errors).length === 0) {
       toast.dismiss()
       setIsSubmitting(false)
     }
-  }, [noErrors])
+  }, [errors])
+
+  const formHasNoErrors = () => {
+    if (
+      errors &&
+      Object.keys(errors).length === 0 &&
+      bookingDate &&
+      frequency &&
+      pets.filter((pet) => pet.checked).length > 0
+    )
+      true
+    return false
+  }
 
   const handleSubmit = (event) => {
     if (event) event.preventDefault()
@@ -88,8 +100,8 @@ export const useForm = () => {
         notes,
       },
     })
-    // this will allow to submit the form if there's not errors, and after all mandatory options have been selected
-    if (noErrors && bookingDate && frequency) {
+
+    if (formHasNoErrors()) {
       router.push(`/checkout`)
     }
   }
