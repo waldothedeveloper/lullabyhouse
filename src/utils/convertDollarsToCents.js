@@ -1,5 +1,5 @@
 export const convertDollarsToCents = (value) => {
-  value = (value + '').replace(/[^\d.-]/g, '')
+  value = (String(value)).replace(/[^\d.-]/g, '')
   if (value && value.includes('.')) {
     value = value.substring(0, value.indexOf('.') + 3)
   }
