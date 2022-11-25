@@ -1,5 +1,5 @@
 export const formatCentsToDollars = (value) => {
-  value = (String(value)).replace(/[^\d.-]/g, '')
-  value = parseFloat(value)
-  return value ? value / 100 : 0
+  let newValue = String(value).replace(/[^\d.-]/g, '')
+  newValue = parseFloat(newValue)
+  return newValue ? newValue / 100 : 0
 }
