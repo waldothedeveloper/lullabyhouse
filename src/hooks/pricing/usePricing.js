@@ -9,7 +9,7 @@ export const usePricing = (price) => {
   const router = useRouter()
   const [card, setCard] = useState(null)
   const [errors, setErrors] = useState(null)
-  
+
   const [disableSubmitButton, setDisableSubmitButton] = useState(false)
 
   //
@@ -62,14 +62,13 @@ export const usePricing = (price) => {
 
       if (result.status === 'OK') {
         sendPaymentInfo(`/api/pricing/pay`, result?.token)
-          .then((val) => {
-            
+          .then(() => {
             setDisableSubmitButton(false)
             router.push(`/checkout/order_summary`)
           })
           .catch((err) => {
             setDisableSubmitButton(false)
-            
+
             setErrors(err)
           })
       }
