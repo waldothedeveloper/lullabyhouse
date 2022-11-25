@@ -19,28 +19,27 @@ export default async function handler(req, res) {
       return res
         .status(404)
         .json({ message: `This endpoint requires a POST request!` })
-    } else {
-      const { sourceId, amount } = req.body
-
-      if (!sourceId) {
-        return res.status(400).json({ message: `sourceId is required` })
-      }
-
-      if (!amount) {
-        return res.status(400).json({ message: `dollar amount is required` })
-      }
-
-      const { result } = await paymentsApi.createPayment({
-        idempotencyKey: randomUUID(),
-        sourceId: sourceId,
-        amountMoney: {
-          currency: `USD`,
-          amount: amount,
-        },
-      })
-      
-      return res.status(200).json(result)
     }
+    const { sourceId, amount } = req.body
+
+    if (!sourceId) {
+      return res.status(400).json({ message: `sourceId is required` })
+    }
+
+    if (!amount) {
+      return res.status(400).json({ message: `dollar amount is required` })
+    }
+
+    const { result } = await paymentsApi.createPayment({
+      idempotencyKey: randomUUID(),
+      sourceId: sourceId,
+      amountMoney: {
+        currency: `USD`,
+        amount: amount,
+      },
+    })
+
+    return res.status(200).json(result)
   } catch (error) {
     res.status(500).send()
   }
