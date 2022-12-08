@@ -24,6 +24,7 @@ export const GetClientAddress = () => {
     validAddress,
     status,
     setValidAddress,
+    structuredAddress,
   } = useVerifyAddress()
   const { addressFolio } = useFindAddressFolio(validAddress, addressFetcher)
   const { addressDetails } = useGetAddressByFolio(addressFolio, folioFetcher)
@@ -162,6 +163,7 @@ export const GetClientAddress = () => {
                             step="1"
                             customerAddress={validAddress}
                             propertyDetails={addressDetails}
+                            address_components={structuredAddress}
                           />
                         )}
                       </Transition>

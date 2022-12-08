@@ -1,17 +1,11 @@
-import { Client, Environment } from 'square'
-
 import { randomUUID } from 'crypto'
+import { squareClient } from '@/utils/squareClient'
 
 BigInt.prototype.toJSON = function () {
   return this.toString()
 }
 
-const client = new Client({
-  accessToken: process.env.SQUARE_ACCESS_TOKEN,
-  environment: Environment.Sandbox,
-})
-
-const { paymentsApi } = client
+const { paymentsApi } = squareClient
 
 export default async function handler(req, res) {
   try {
@@ -41,6 +35,6 @@ export default async function handler(req, res) {
 
     return res.status(200).json(result)
   } catch (error) {
-    res.status(500).send()
+    return res.status(error?.statusCode || 500).send(error)
   }
 }

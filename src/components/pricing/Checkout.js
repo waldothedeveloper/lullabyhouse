@@ -1,22 +1,68 @@
 import { AmountDue } from '@/components/pricing/AmountDue'
+import { BillingInformation } from '@/components/pricing/BillingInformation'
 import { CheckoutBreakdown } from '@/components/pricing/CheckoutBreakdown'
 import { ContactInformation } from '@/components/pricing/ContactInformation'
 import { Discount } from '@/components/pricing/Discount'
+import { Error } from '@/components/Error'
 import { Extras } from '@/components/pricing/Extras'
-import { Fragment } from 'react'
 import { PaymentInfo } from '@/components/pricing/PaymentInfo'
 import { PetsPremiumCharge } from '@/components/pricing/PetsPremiumCharge'
 import { SubTotal } from '@/components/pricing/SubTotal'
+import { Toaster } from 'react-hot-toast'
 import { Total } from '@/components/pricing/Total'
 import { TotalBeforeDiscount } from '@/components/pricing/TotalBeforeDiscount'
 import { Transition } from '@headlessui/react'
 import { useCalculatePrice } from '@/hooks/pricing/useCalculatePrice'
-import { usePricing } from '@/hooks/pricing/usePricing'
+import { useCardInstance } from '@/hooks/pricing/useCardInstance'
+import { useCheckout } from '@/hooks/pricing/useCheckout'
+import { useCustomerInfo } from '@/hooks/useCustomerInfo'
+import { useDisableSubmitBUtton } from '@/hooks/pricing/useDisableSubmitButton'
+import { useErrors } from '@/hooks/useErrors'
+import { useOneTimeCardPayment } from '@/hooks/pricing/useOneTimeCardPayment'
+import { usePlan } from '@/hooks/pricing/usePlan'
 //
 export const Checkout = () => {
+  const { errors, handleErrors } = useErrors()
+
+  const {
+    firstName,
+    lastName,
+    handleFirstName,
+    handleLastName,
+    email,
+    handleEmail,
+  } = useCustomerInfo()
   const { price, products, date, address, typeOfCleaning } = useCalculatePrice()
-  const { card, handleClick, disableSubmitButton } = usePricing(price)
+
+  const { disableSubmitButton, setDisableSubmitButton } =
+    useDisableSubmitBUtton()
+  const { subscriptionPlans } = usePlan(date)
+  const { card, cardErrors } = useCardInstance()
+  const { handleCardPayment } = useOneTimeCardPayment(
+    price,
+    card,
+    setDisableSubmitButton,
+    handleErrors
+  )
+
+  const { handleCheckoutProcess } = useCheckout(
+    firstName,
+    lastName,
+    email,
+    address?.address_components,
+    date,
+    subscriptionPlans,
+    price,
+    setDisableSubmitButton,
+    card,
+    handleErrors
+  )
+
   //
+  if (cardErrors) {
+    return <Error error={cardErrors} />
+  }
+
   return (
     <>
       <div className="z-40 bg-white">
@@ -86,9 +132,22 @@ export const Checkout = () => {
                   leaveFrom="opacity-100"
                   leaveTo="opacity-0"
                 >
-                  <ContactInformation />
+                  <ContactInformation
+                    firstName={firstName}
+                    lastName={lastName}
+                    handleFirstName={handleFirstName}
+                    handleLastName={handleLastName}
+                    email={email}
+                    handleEmail={handleEmail}
+                  />
+                  <BillingInformation address={address?.address_components} />
                   <PaymentInfo
-                    handleClick={handleClick}
+                    errors={errors}
+                    handlePayment={
+                      date?.serviceFrecuency?.cadence
+                        ? handleCheckoutProcess
+                        : handleCardPayment
+                    }
                     disableSubmitButton={disableSubmitButton}
                   />
                 </Transition>
@@ -97,6 +156,11 @@ export const Checkout = () => {
           </section>
         </div>
       </div>
+      <Toaster
+        position="top-right"
+        reverseOrder={false}
+        toastOptions={{ duration: 100000 }}
+      />
     </>
   )
 }

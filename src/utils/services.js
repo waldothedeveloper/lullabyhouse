@@ -14,6 +14,7 @@ export const serviceFrequency = [
     id: 2,
     title: 'Every week',
     key: 'everyWeek',
+    cadence: 'WEEKLY',
     savingsTip: 'Get 20% off',
     color:
       'inline-flex whitespace-nowrap rounded-full bg-cyan-500 px-4 py-1 text-xs font-semibold text-white shadow shadow-cyan-500/75',
@@ -28,6 +29,7 @@ export const serviceFrequency = [
     id: 3,
     title: 'Every 2 weeks',
     key: 'every2Weeks',
+    cadence: 'EVERY_TWO_WEEKS',
     savingsTip: 'Get 15% off',
     color:
       'inline-flex whitespace-nowrap rounded-full bg-green-500 px-4 py-1 text-xs font-semibold text-white shadow shadow-green-500/75',
@@ -42,6 +44,7 @@ export const serviceFrequency = [
     id: 4,
     title: 'Once a month',
     key: 'onceAMonth',
+    cadence: 'MONTHLY',
     savingsTip: 'Get 10% off',
     color:
       'inline-flex whitespace-nowrap rounded-full bg-indigo-500 px-4 py-1 text-xs font-semibold text-white shadow shadow-indigo-500/75',
