@@ -89,8 +89,6 @@ Here's the source: https://www.omnicalculator.com/finance/discount
 */
 
 // CARMENCITA ADDRESS 15560 SW 71 street, Miami FL.
-// chanfing bed sheets
+// changing bed sheets
 // cleaning windows inside and outside
 // laundry
-
-// 59.224000000000004
