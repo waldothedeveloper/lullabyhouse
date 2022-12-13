@@ -5,17 +5,20 @@ export const usePlan = (date) => {
 
   //
   useEffect(() => {
-    const { cadence } = date?.serviceFrecuency || null
+    if (date?.serviceFrecuency) {
+      const { cadence } = date?.serviceFrecuency || null
 
-    if (cadence) {
-      fetch('/api/pricing/catalog')
-        .then((res) => res.json())
-        .then((data) => {
-          const subPlan = data?.objects?.filter(
-            (elem) => elem?.subscriptionPlanData?.phases[0].cadence === cadence
-          )
-          setSubscriptionPlans(subPlan)
-        })
+      if (cadence) {
+        fetch('/api/pricing/catalog')
+          .then((res) => res.json())
+          .then((data) => {
+            const subPlan = data?.objects?.filter(
+              (elem) =>
+                elem?.subscriptionPlanData?.phases[0].cadence === cadence
+            )
+            setSubscriptionPlans(subPlan)
+          })
+      }
     }
   }, [date])
 

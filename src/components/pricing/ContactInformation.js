@@ -1,11 +1,4 @@
-export const ContactInformation = ({
-  firstName,
-  lastName,
-  handleFirstName,
-  handleLastName,
-  email,
-  handleEmail,
-}) => {
+export const ContactInformation = ({ register, errors }) => {
   return (
     <div>
       <div>
@@ -23,41 +16,57 @@ export const ContactInformation = ({
         <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
           <div className="sm:col-span-3">
             <label
-              htmlFor="first-name"
-              className="block text-sm font-medium text-gray-700"
+              htmlFor="firstName"
+              className="block text-sm font-medium text-slate-700"
             >
               First name
             </label>
             <div className="mt-1">
               <input
                 type="text"
-                value={firstName || ''}
-                onChange={handleFirstName}
-                name="first-name"
-                id="first-name"
+                {...register('firstName', { required: true })}
+                name="firstName"
+                id="firstName"
                 autoComplete="given-name"
-                className="block w-full rounded-md border-gray-300 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm"
+                className={
+                  errors.firstName
+                    ? 'block w-full rounded-md border-red-500 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm'
+                    : 'block w-full rounded-md border-slate-300 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm'
+                }
               />
+              {errors.firstName && (
+                <p className="mt-2 text-sm text-red-600" id="firstName-error">
+                  {errors.firstName?.message}
+                </p>
+              )}
             </div>
           </div>
 
           <div className="sm:col-span-3">
             <label
-              htmlFor="last-name"
-              className="block text-sm font-medium text-gray-700"
+              htmlFor="lastName"
+              className="block text-sm font-medium text-slate-700"
             >
               Last name
             </label>
             <div className="mt-1">
               <input
                 type="text"
-                value={lastName || ''}
-                onChange={handleLastName}
-                name="last-name"
-                id="last-name"
+                {...register('lastName', { required: true })}
+                name="lastName"
+                id="lastName"
                 autoComplete="family-name"
-                className="block w-full rounded-md border-gray-300 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm"
+                className={
+                  errors.lastName
+                    ? 'block w-full rounded-md border-red-500 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm'
+                    : 'block w-full rounded-md border-slate-300 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm'
+                }
               />
+              {errors.lastName && (
+                <p className="mt-2 text-sm text-red-600" id="lastName-error">
+                  {errors.lastName?.message}
+                </p>
+              )}
             </div>
           </div>
         </div>
@@ -65,7 +74,7 @@ export const ContactInformation = ({
 
       <div className="mt-6">
         <label
-          htmlFor="email-address"
+          htmlFor="email"
           className="block text-sm font-medium text-slate-700"
         >
           Email address
@@ -73,31 +82,53 @@ export const ContactInformation = ({
         <div className="mt-1">
           <input
             type="email"
-            value={email || ''}
-            onChange={handleEmail}
-            id="email-address"
-            name="email-address"
+            {...register('email', { required: true })}
+            name="email"
+            id="email"
             autoComplete="email"
-            className="block w-full rounded-md border-slate-300 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm"
+            className={
+              errors.email
+                ? 'block w-full rounded-md border-red-500 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm'
+                : 'block w-full rounded-md border-slate-300 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm'
+            }
           />
+          {errors.email && (
+            <p className="mt-2 text-sm text-red-600" id="email-error">
+              {errors.email?.message}
+            </p>
+          )}
         </div>
       </div>
       <div className="mt-6">
         <label
-          htmlFor="phone-number"
+          htmlFor="phone"
           className="block text-sm font-medium text-slate-700"
         >
           Phone Number
         </label>
         <div className="mt-1">
+          {/* TODO: check later if we can change this pattern for the phone, this one looks like a global one */}
           <input
             type="tel"
-            pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
-            id="phone-number"
-            name="phone-number"
+            {...register('phone', {
+              required: true,
+              pattern:
+                /\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/g,
+            })}
+            name="phone"
+            id="phone"
             autoComplete="tel"
-            className="block w-full rounded-md border-slate-300 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm"
+            className={
+              errors.phone
+                ? 'block w-full rounded-md border-red-500 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm'
+                : 'block w-full rounded-md border-slate-300 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm'
+            }
           />
+          {errors.phone && (
+            <p className="mt-2 text-sm text-red-600" id="phone-error">
+              {errors.phone?.message}
+            </p>
+          )}
         </div>
       </div>
     </div>
