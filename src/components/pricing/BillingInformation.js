@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types'
+
 export const BillingInformation = ({ address }) => {
   const {
     addressLine1,
@@ -134,4 +136,8 @@ export const BillingInformation = ({ address }) => {
       </div>
     </div>
   )
+}
+
+BillingInformation.propTypes = {
+  address: PropTypes.object.isRequired,
 }

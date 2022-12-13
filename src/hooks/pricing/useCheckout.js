@@ -1,14 +1,31 @@
+import * as yup from 'yup'
+
 import { addCardOnFileAndAddSubscription } from '@/utils/addCardOnFileAndAddSubscription'
 import { checkIfCustomerExists } from '@/utils/checkIfCustomerExists'
 import { createNewCustomer } from '@/utils/createNewCustomer'
 import { isValueAnObject } from '@/utils/isValueAnObject'
 import { tokenizeCard } from '@/utils/tokenizeCard'
+import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/router'
+import { yupResolver } from '@hookform/resolvers/yup'
+
+//
+const phoneRegExp =
+  /\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/g
+const schema = yup
+  .object({
+    firstName: yup.string().required('First name is required'),
+    lastName: yup.string().required('Last name is required'),
+    email: yup.string().email().required('A valid email is required'),
+    phone: yup
+      .string()
+      .matches(phoneRegExp, 'The phone number is invalid.')
+      .required('A phone number is required'),
+  })
+  .required()
+
 //
 export const useCheckout = (
-  firstName,
-  lastName,
-  email,
   address,
   date,
   subscriptionPlans,
@@ -19,8 +36,19 @@ export const useCheckout = (
 ) => {
   const router = useRouter()
   const goToThankYouPage = () => router.push(`/checkout/order_summary`)
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  })
 
-  const handleCheckoutProcess = async () => {
+  const formErrors = errors
+  // console.log('form errors: ', formErrors)
+
+  const handleCheckoutProcess = async (data) => {
+    const { firstName, lastName, email, phone } = await data
     const tokenizedCard = await tokenizeCard(card)
     try {
       if (
@@ -32,7 +60,6 @@ export const useCheckout = (
           setDisableSubmitButton(true)
           // always make sure first if a customer exists
           const customers = await checkIfCustomerExists(email)
-          // console.log('customers: ', customers)
 
           if (isValueAnObject(customers) && customers?.errors) {
             handleErrors(customers?.errors)
@@ -44,11 +71,11 @@ export const useCheckout = (
               const { customer } = await createNewCustomer(
                 firstName,
                 lastName,
-                email
+                email,
+                phone
               )
 
               if (isValueAnObject(customer) && customer?.id) {
-                // console.log(`do we have a new customer?`, customer)
                 const { id } = customer
                 await addCardOnFileAndAddSubscription(
                   id,
@@ -70,7 +97,6 @@ export const useCheckout = (
           }
 
           if (isValueAnObject(customers) && customers?.customers) {
-            // console.log(`DO WE HAVE AN EXISTING CUSTOMER?`, customers)
             const { id } = customers?.customers[0] || null
             try {
               await addCardOnFileAndAddSubscription(
@@ -98,12 +124,11 @@ export const useCheckout = (
         }
       }
     } catch (error) {
-      // console.log('error trying to tokenize the card: ', error)
       handleErrors(error)
     } finally {
       setDisableSubmitButton(false)
     }
   }
 
-  return { handleCheckoutProcess }
+  return { handleCheckoutProcess, register, handleSubmit, formErrors }
 }

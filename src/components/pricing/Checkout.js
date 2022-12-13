@@ -15,7 +15,6 @@ import { Transition } from '@headlessui/react'
 import { useCalculatePrice } from '@/hooks/pricing/useCalculatePrice'
 import { useCardInstance } from '@/hooks/pricing/useCardInstance'
 import { useCheckout } from '@/hooks/pricing/useCheckout'
-import { useCustomerInfo } from '@/hooks/useCustomerInfo'
 import { useDisableSubmitBUtton } from '@/hooks/pricing/useDisableSubmitButton'
 import { useErrors } from '@/hooks/useErrors'
 import { useOneTimeCardPayment } from '@/hooks/pricing/useOneTimeCardPayment'
@@ -24,14 +23,6 @@ import { usePlan } from '@/hooks/pricing/usePlan'
 export const Checkout = () => {
   const { errors, handleErrors } = useErrors()
 
-  const {
-    firstName,
-    lastName,
-    handleFirstName,
-    handleLastName,
-    email,
-    handleEmail,
-  } = useCustomerInfo()
   const { price, products, date, address, typeOfCleaning } = useCalculatePrice()
 
   const { disableSubmitButton, setDisableSubmitButton } =
@@ -45,18 +36,16 @@ export const Checkout = () => {
     handleErrors
   )
 
-  const { handleCheckoutProcess } = useCheckout(
-    firstName,
-    lastName,
-    email,
-    address?.address_components,
-    date,
-    subscriptionPlans,
-    price,
-    setDisableSubmitButton,
-    card,
-    handleErrors
-  )
+  const { handleCheckoutProcess, register, handleSubmit, formErrors } =
+    useCheckout(
+      address?.address_components,
+      date,
+      subscriptionPlans,
+      price,
+      setDisableSubmitButton,
+      card,
+      handleErrors
+    )
 
   //
   if (cardErrors) {
@@ -117,42 +106,40 @@ export const Checkout = () => {
             aria-labelledby="payment-and-shipping-heading"
             className="py-16 lg:col-start-1 lg:row-start-1 lg:mx-auto lg:w-full lg:max-w-lg lg:pt-0 lg:pb-24"
           >
-            <h2 id="payment-and-shipping-heading" className="sr-only">
-              Payment details
-            </h2>
+            <form onSubmit={handleSubmit(handleCheckoutProcess)}>
+              <h2 id="payment-and-shipping-heading" className="sr-only">
+                Payment details
+              </h2>
 
-            <div className="mx-auto max-w-2xl px-4 lg:max-w-none lg:px-0">
-              {Boolean(card) && (
-                <Transition
-                  show={true}
-                  enter="transition-opacity duration-75"
-                  enterFrom="opacity-0"
-                  enterTo="opacity-100"
-                  leave="transition-opacity duration-150"
-                  leaveFrom="opacity-100"
-                  leaveTo="opacity-0"
-                >
-                  <ContactInformation
-                    firstName={firstName}
-                    lastName={lastName}
-                    handleFirstName={handleFirstName}
-                    handleLastName={handleLastName}
-                    email={email}
-                    handleEmail={handleEmail}
-                  />
-                  <BillingInformation address={address?.address_components} />
-                  <PaymentInfo
-                    errors={errors}
-                    handlePayment={
-                      date?.serviceFrecuency?.cadence
-                        ? handleCheckoutProcess
-                        : handleCardPayment
-                    }
-                    disableSubmitButton={disableSubmitButton}
-                  />
-                </Transition>
-              )}
-            </div>
+              <div className="mx-auto max-w-2xl px-4 lg:max-w-none lg:px-0">
+                {Boolean(card) && (
+                  <Transition
+                    show={true}
+                    enter="transition-opacity duration-75"
+                    enterFrom="opacity-0"
+                    enterTo="opacity-100"
+                    leave="transition-opacity duration-150"
+                    leaveFrom="opacity-100"
+                    leaveTo="opacity-0"
+                  >
+                    <ContactInformation
+                      register={register}
+                      errors={formErrors}
+                    />
+                    <BillingInformation address={address?.address_components} />
+                    <PaymentInfo
+                      errors={errors}
+                      handlePayment={
+                        date?.serviceFrecuency?.cadence
+                          ? handleCheckoutProcess
+                          : handleCardPayment
+                      }
+                      disableSubmitButton={disableSubmitButton}
+                    />
+                  </Transition>
+                )}
+              </div>
+            </form>
           </section>
         </div>
       </div>
