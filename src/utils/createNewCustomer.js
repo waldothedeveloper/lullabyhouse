@@ -1,7 +1,8 @@
 export const createNewCustomer = async (
   givenName,
   familyName,
-  emailAddress
+  emailAddress,
+  phone
 ) => {
   const newCustomer = await fetch(`/api/customer/create_customer`, {
     method: 'POST',
@@ -12,6 +13,7 @@ export const createNewCustomer = async (
       givenName,
       familyName,
       emailAddress,
+      phone,
     }),
   })
     .then((res) => res.json())
