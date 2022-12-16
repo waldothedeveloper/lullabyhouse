@@ -1,15 +1,10 @@
-import PropTypes from 'prop-types'
+import { SearchAddress } from '@/components/address/SearchAddress'
+import { useVerifyAddress } from '@/hooks/useVerifyAddress'
+//
+export const BillingInformation = () => {
+  const { value, handleSelect, handleInput, data, status, structuredAddress } =
+    useVerifyAddress()
 
-export const BillingInformation = ({ address }) => {
-  const {
-    addressLine1,
-    addressLine2,
-    administrativeDistrictLevel1,
-    country,
-    locality,
-    postalCode,
-  } = address
-  // TODO: OnChange is needed for all inputs, need to finish this later
   return (
     <div className="mt-6 space-y-8">
       <div>
@@ -20,7 +15,7 @@ export const BillingInformation = ({ address }) => {
           Billing Address
         </h3>
         <p className="max-w-2xl text-sm text-slate-500">
-          Address as listed on your credit card statement
+          Address as listed on your credit card statement.
         </p>
       </div>
       <div className="sm:col-span-6">
@@ -31,31 +26,33 @@ export const BillingInformation = ({ address }) => {
           Street address
         </label>
         <div className="mt-1">
-          <input
-            value={addressLine1 || ''}
-            type="text"
-            name="street-address"
-            id="street-address"
-            autoComplete="street-address"
-            className="block w-full rounded-md border-slate-300 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm"
+          <SearchAddress
+            structuredAddress={structuredAddress}
+            handleSelect={handleSelect}
+            handleInput={handleInput}
+            data={data}
+            value={value}
+            status={status}
           />
         </div>
       </div>
-      <div className="sm:col-span-6">
+      <div className="mt-1 sm:col-span-6">
         <label
-          htmlFor="street-address"
+          htmlFor="street_address_2"
           className="block text-sm font-medium text-slate-700"
         >
-          Address 2 (apt number)
+          Address 2 (optional)
         </label>
         <div className="mt-1">
           <input
-            value={addressLine2 || ''}
+            disabled
+            defaultValue={structuredAddress?.addressLine2 || ''}
+            // onChange={handleBillingAddress}
             type="text"
-            name="street-address"
-            id="street-address"
+            name="street_address_2"
+            id="street_address_2"
             autoComplete="street-address"
-            className="block w-full rounded-md border-slate-300 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm"
+            className="block w-full rounded-md border-slate-200 bg-slate-200 text-slate-800 sm:text-sm"
           />
         </div>
       </div>
@@ -69,12 +66,14 @@ export const BillingInformation = ({ address }) => {
         </label>
         <div className="mt-1">
           <input
-            value={locality || ''}
+            disabled
+            defaultValue={structuredAddress?.locality || ''}
+            // onChange={handleBillingAddress}
             type="text"
             name="city"
             id="city"
             autoComplete="address-level2"
-            className="block w-full rounded-md border-slate-300 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm"
+            className="block w-full rounded-md border-slate-200 bg-slate-200 text-slate-800 sm:text-sm"
           />
         </div>
       </div>
@@ -88,31 +87,35 @@ export const BillingInformation = ({ address }) => {
         </label>
         <div className="mt-1">
           <input
-            value={administrativeDistrictLevel1 || ''}
+            disabled
+            defaultValue={structuredAddress?.administrativeDistrictLevel1 || ''}
+            // onChange={handleBillingAddress}
             type="text"
             name="region"
             id="region"
             autoComplete="address-level1"
-            className="block w-full rounded-md border-slate-300 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm"
+            className="block w-full rounded-md border-slate-200 bg-slate-200 text-slate-800 sm:text-sm"
           />
         </div>
       </div>
 
       <div className="sm:col-span-2">
         <label
-          htmlFor="postal-code"
+          htmlFor="postal_code"
           className="block text-sm font-medium text-slate-700"
         >
           ZIP / Postal code
         </label>
         <div className="mt-1">
           <input
-            value={postalCode || ''}
+            disabled
+            defaultValue={structuredAddress?.postalCode || ''}
+            // onChange={handleBillingAddress}
             type="text"
-            name="postal-code"
-            id="postal-code"
+            name="postal_code"
+            id="postal_code"
             autoComplete="postal-code"
-            className="block w-full rounded-md border-slate-300 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm"
+            className="block w-full rounded-md border-slate-200 bg-slate-200 text-slate-800 sm:text-sm"
           />
         </div>
       </div>
@@ -125,19 +128,17 @@ export const BillingInformation = ({ address }) => {
         </label>
         <div className="mt-1">
           <input
-            value={country || ''}
+            disabled
+            defaultValue={structuredAddress?.country || ''}
+            // onChange={handleBillingAddress}
             type="text"
             name="country"
             id="country"
             autoComplete="country"
-            className="block w-full rounded-md border-slate-300 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm"
+            className="block w-full rounded-md border-slate-200 bg-slate-200 text-slate-800 sm:text-sm"
           />
         </div>
       </div>
     </div>
   )
-}
-
-BillingInformation.propTypes = {
-  address: PropTypes.object.isRequired,
 }
