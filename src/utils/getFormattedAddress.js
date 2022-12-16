@@ -6,7 +6,7 @@ export const getFormattedAddress = (addressArray) => {
     postalCode = '',
     country = ''
   // loop over the address components
-  for (let component of addressArray) {
+  for (const component of addressArray) {
     const componentType = component.types[0]
 
     switch (componentType) {
@@ -46,6 +46,8 @@ export const getFormattedAddress = (addressArray) => {
 
       case 'country':
         country = component.short_name
+        break
+      default:
         break
     }
   }
