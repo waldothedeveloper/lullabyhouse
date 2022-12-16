@@ -43,6 +43,8 @@ export const addCardOnFileAndAddSubscription = async (
         setDisableSubmitButton(false)
         goToThankYouPage()
       }
+
+      return null
     } catch (error) {
       setDisableSubmitButton(false)
       handleErrors(error)
