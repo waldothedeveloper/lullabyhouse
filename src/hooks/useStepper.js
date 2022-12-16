@@ -30,6 +30,7 @@ const reducer = (state, action) => {
           status: 'complete',
           verifiedAddress: data?.customerAddress[0]?.description,
           propertyDetails: data?.propertyDetails,
+          // we might not need this line below anymore
           address_components: data?.address_components,
         },
         date: { ...state.date, status: 'current' },

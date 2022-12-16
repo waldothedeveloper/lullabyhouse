@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import usePlacesAutocomplete, { getDetails } from 'use-places-autocomplete'
 
 import { getFormattedAddress } from '@/utils/getFormattedAddress'
+import { isValueAnArray } from '@/utils/isValueAnArray'
 import { isValueAnObject } from '@/utils/isValueAnObject'
 
 //
@@ -28,27 +29,33 @@ export const useVerifyAddress = () => {
   const handleInput = (e) => setValue(e)
 
   const handleSelect = async (val) => {
-    try {
-      await getDetails({
-        placeId: data[0].place_id,
-      })
-        .then((details) => {
-          if (isValueAnObject(details) && Object.keys(details).length > 0) {
-            const { address_components } = details
+    const chosenAddress = data.filter((elem) => elem.description === val)
 
-            const youGotIt = getFormattedAddress(address_components)
-            setStructuredAddress(youGotIt)
-          }
+    if (isValueAnArray(chosenAddress)) {
+      try {
+        await getDetails({
+          placeId: chosenAddress[0]?.place_id,
         })
-        .catch((error) => {
-          throw new Error(`Coudn't get the property details`, error)
-        })
-    } catch (error) {
-      throw new Error(`Coudn't get the property details`, error)
+          .then((details) => {
+            if (isValueAnObject(details) && Object.keys(details).length > 0) {
+              const { address_components } = details
+
+              const youGotIt = getFormattedAddress(address_components)
+              setStructuredAddress(youGotIt)
+            }
+          })
+          .catch((error) => {
+            throw new Error(`Coudn't get the property details`, error)
+          })
+      } catch (error) {
+        throw new Error(`Coudn't get the property details`, error)
+      }
+    } else {
+      throw new Error(`We couldn't find the property details.`)
     }
 
     setValue(val, false)
-    setValidAddress(data.filter((elem) => elem.description === val))
+    setValidAddress(chosenAddress)
     clearSuggestions()
 
     return val
@@ -57,12 +64,14 @@ export const useVerifyAddress = () => {
   useEffect(() => {
     if (value === '') {
       setValidAddress(false)
+      setStructuredAddress(null)
     }
   }, [value])
 
   useEffect(() => {
     if (!validAddress) {
       setValue('', false)
+      setStructuredAddress(null)
     }
   }, [setValue, validAddress])
 
