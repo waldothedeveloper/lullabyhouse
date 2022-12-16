@@ -47,6 +47,8 @@ export const getFormattedAddress = (addressArray) => {
       case 'country':
         country = component.short_name
         break
+      default:
+        break
     }
   }
 
