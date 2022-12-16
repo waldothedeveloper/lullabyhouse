@@ -21,6 +21,7 @@ const schema = yup
       .string()
       .matches(phoneRegExp, 'The phone number is invalid.')
       .required('A phone number is required'),
+    street_address_2: yup.string(),
   })
   .required()
 
@@ -45,7 +46,6 @@ export const useCheckout = (
   })
 
   const formErrors = errors
-  // console.log('form errors: ', formErrors)
 
   const handleCheckoutProcess = async (data) => {
     const { firstName, lastName, email, phone } = await data
@@ -113,7 +113,7 @@ export const useCheckout = (
                 lastName
               )
             } catch (error) {
-              console.log(
+              throw new Error(
                 `Error trying to add Card on file or subscription`,
                 error
               )

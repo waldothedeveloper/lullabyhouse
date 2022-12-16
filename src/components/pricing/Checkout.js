@@ -19,6 +19,7 @@ import { useDisableSubmitBUtton } from '@/hooks/pricing/useDisableSubmitButton'
 import { useErrors } from '@/hooks/useErrors'
 import { useOneTimeCardPayment } from '@/hooks/pricing/useOneTimeCardPayment'
 import { usePlan } from '@/hooks/pricing/usePlan'
+
 //
 export const Checkout = () => {
   const { errors, handleErrors } = useErrors()
@@ -126,7 +127,7 @@ export const Checkout = () => {
                       register={register}
                       errors={formErrors}
                     />
-                    <BillingInformation address={address?.address_components} />
+                    <BillingInformation />
                     <PaymentInfo
                       errors={errors}
                       handlePayment={
