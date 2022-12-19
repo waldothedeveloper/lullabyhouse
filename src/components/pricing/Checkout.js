@@ -43,6 +43,7 @@ export const Checkout = () => {
     register,
     handleSubmit,
     formErrors,
+    setValue,
     openModal,
     setOpenModal,
   } = useCheckout(
@@ -133,6 +134,7 @@ export const Checkout = () => {
                     <ContactInformation
                       register={register}
                       errors={formErrors}
+                      setValue={setValue}
                     />
                     <BillingInformation />
                     <PaymentInfo
