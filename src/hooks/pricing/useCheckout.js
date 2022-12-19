@@ -42,12 +42,15 @@ export const useCheckout = (
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
   })
 
   const formErrors = errors
+
+  // setValue('phone', formatPhoneNumber(phoneNum))
 
   const handleCheckoutProcess = async (data) => {
     const { firstName, lastName, email, phone } = await data
@@ -137,6 +140,7 @@ export const useCheckout = (
   return {
     handleCheckoutProcess,
     register,
+    setValue,
     handleSubmit,
     formErrors,
     openModal,

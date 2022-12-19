@@ -1,4 +1,6 @@
-export const ContactInformation = ({ register, errors }) => {
+import { formatPhoneNumber } from '@/utils/formatPhoneNumber'
+
+export const ContactInformation = ({ register, errors, setValue }) => {
   return (
     <div>
       <div>
@@ -23,20 +25,21 @@ export const ContactInformation = ({ register, errors }) => {
             </label>
             <div className="mt-1">
               <input
+                placeholder="John"
                 type="text"
                 {...register('firstName', { required: true })}
                 name="firstName"
                 id="firstName"
                 autoComplete="given-name"
                 className={
-                  errors.firstName
+                  errors?.firstName
                     ? 'block w-full rounded-md border-red-500 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm'
                     : 'block w-full rounded-md border-slate-300 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm'
                 }
               />
               {errors.firstName && (
                 <p className="mt-2 text-sm text-red-600" id="firstName-error">
-                  {errors.firstName?.message}
+                  {errors?.firstName?.message}
                 </p>
               )}
             </div>
@@ -51,20 +54,21 @@ export const ContactInformation = ({ register, errors }) => {
             </label>
             <div className="mt-1">
               <input
+                placeholder="Appleseed"
                 type="text"
                 {...register('lastName', { required: true })}
                 name="lastName"
                 id="lastName"
                 autoComplete="family-name"
                 className={
-                  errors.lastName
+                  errors?.lastName
                     ? 'block w-full rounded-md border-red-500 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm'
                     : 'block w-full rounded-md border-slate-300 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm'
                 }
               />
               {errors.lastName && (
                 <p className="mt-2 text-sm text-red-600" id="lastName-error">
-                  {errors.lastName?.message}
+                  {errors?.lastName?.message}
                 </p>
               )}
             </div>
@@ -81,20 +85,21 @@ export const ContactInformation = ({ register, errors }) => {
         </label>
         <div className="mt-1">
           <input
+            placeholder="adan@example.com"
             type="email"
             {...register('email', { required: true })}
             name="email"
             id="email"
             autoComplete="email"
             className={
-              errors.email
+              errors?.email
                 ? 'block w-full rounded-md border-red-500 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm'
                 : 'block w-full rounded-md border-slate-300 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm'
             }
           />
-          {errors.email && (
+          {errors?.email && (
             <p className="mt-2 text-sm text-red-600" id="email-error">
-              {errors.email?.message}
+              {errors?.email?.message}
             </p>
           )}
         </div>
@@ -109,24 +114,29 @@ export const ContactInformation = ({ register, errors }) => {
         <div className="mt-1">
           {/* TODO: check later if we can change this pattern for the phone, this one looks like a global one */}
           <input
+            placeholder="(555) 444-3322"
+            maxLength={14}
             type="tel"
             {...register('phone', {
+              onChange: (event) => {
+                const { value } = event.target
+                const formattedPhone = formatPhoneNumber(value)
+                if (formattedPhone) setValue('phone', formattedPhone)
+              },
               required: true,
-              pattern:
-                /\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/g,
             })}
             name="phone"
             id="phone"
             autoComplete="tel"
             className={
-              errors.phone
+              errors?.phone
                 ? 'block w-full rounded-md border-red-500 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm'
                 : 'block w-full rounded-md border-slate-300 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm'
             }
           />
           {errors.phone && (
             <p className="mt-2 text-sm text-red-600" id="phone-error">
-              {errors.phone?.message}
+              {errors?.phone?.message}
             </p>
           )}
         </div>
