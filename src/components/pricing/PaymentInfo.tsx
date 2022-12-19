@@ -1,6 +1,14 @@
 import PropTypes from 'prop-types'
 
-export const PaymentInfo = ({ disableSubmitButton, errors }) => {
+type err = { message: string; detail: string }
+type PaymentInfoparams = {
+  disableSubmitButton: boolean
+  errors: err
+}
+export const PaymentInfo = ({
+  disableSubmitButton,
+  errors,
+}: PaymentInfoparams) => {
   return (
     <div className="mt-10 space-y-8">
       <h3
