@@ -7,7 +7,7 @@ export default function Document() {
   return (
     <Html className="h-full antialiased" lang="en">
       <Head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.googleapis.com&display=optional" />
         <link
           rel="preconnect"
           href="https://fonts.gstatic.com"
