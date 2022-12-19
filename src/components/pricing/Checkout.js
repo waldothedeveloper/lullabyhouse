@@ -5,6 +5,7 @@ import { ContactInformation } from '@/components/pricing/ContactInformation'
 import { Discount } from '@/components/pricing/Discount'
 import { Error } from '@/components/Error'
 import { Extras } from '@/components/pricing/Extras'
+import { Modal } from '@/components/pricing/Modal'
 import { PaymentInfo } from '@/components/pricing/PaymentInfo'
 import { PetsPremiumCharge } from '@/components/pricing/PetsPremiumCharge'
 import { SubTotal } from '@/components/pricing/SubTotal'
@@ -37,16 +38,22 @@ export const Checkout = () => {
     handleErrors
   )
 
-  const { handleCheckoutProcess, register, handleSubmit, formErrors } =
-    useCheckout(
-      address?.address_components,
-      date,
-      subscriptionPlans,
-      price,
-      setDisableSubmitButton,
-      card,
-      handleErrors
-    )
+  const {
+    handleCheckoutProcess,
+    register,
+    handleSubmit,
+    formErrors,
+    openModal,
+    setOpenModal,
+  } = useCheckout(
+    address?.address_components,
+    date,
+    subscriptionPlans,
+    price,
+    setDisableSubmitButton,
+    card,
+    handleErrors
+  )
 
   //
   if (cardErrors) {
@@ -149,6 +156,7 @@ export const Checkout = () => {
         reverseOrder={false}
         toastOptions={{ duration: 100000 }}
       />
+      <Modal openModal={openModal} setOpenModal={setOpenModal} />
     </>
   )
 }

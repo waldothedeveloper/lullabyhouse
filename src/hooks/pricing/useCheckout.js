@@ -7,6 +7,7 @@ import { isValueAnObject } from '@/utils/isValueAnObject'
 import { tokenizeCard } from '@/utils/tokenizeCard'
 import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/router'
+import { useState } from 'react'
 import { yupResolver } from '@hookform/resolvers/yup'
 
 //
@@ -35,6 +36,7 @@ export const useCheckout = (
   card,
   handleErrors
 ) => {
+  const [openModal, setOpenModal] = useState(false)
   const router = useRouter()
   const goToThankYouPage = () => router.push(`/checkout/order_summary`)
   const {
@@ -58,6 +60,7 @@ export const useCheckout = (
       ) {
         try {
           setDisableSubmitButton(true)
+          setOpenModal(true)
           // always make sure first if a customer exists
           const customers = await checkIfCustomerExists(email)
 
@@ -127,8 +130,16 @@ export const useCheckout = (
       handleErrors(error)
     } finally {
       setDisableSubmitButton(false)
+      setOpenModal(false)
     }
   }
 
-  return { handleCheckoutProcess, register, handleSubmit, formErrors }
+  return {
+    handleCheckoutProcess,
+    register,
+    handleSubmit,
+    formErrors,
+    openModal,
+    setOpenModal,
+  }
 }
