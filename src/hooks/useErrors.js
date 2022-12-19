@@ -79,8 +79,6 @@ export const useErrors = () => {
   const handleErrors = (err) => {
     if (err && isValueAnArray(err) && err[0]?.code) {
       const { code, detail } = err[0]
-      // console.log('detail: ', detail)
-      // console.log('code: ', code)
       setErrors(handleErrorCases(code, detail))
     }
   }
