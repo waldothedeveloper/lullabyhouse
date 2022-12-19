@@ -4,9 +4,9 @@ import { Fragment } from 'react'
 import React from 'react'
 import { Spinner } from '@/components/Spinner'
 
-type C = { openModal: boolean; setOpenModal: Function }
+type Modalparams = { openModal: boolean; setOpenModal: () => boolean }
 //
-export const Modal = ({ openModal, setOpenModal }: C) => {
+export const Modal = ({ openModal, setOpenModal }: Modalparams) => {
   return (
     <Transition.Root show={openModal} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={setOpenModal}>
