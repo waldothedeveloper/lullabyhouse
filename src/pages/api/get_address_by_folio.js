@@ -21,16 +21,40 @@ export default async function handler(req, res) {
       BedroomCount: beds,
       HalfBathroomCount: halfBath,
       BathroomCount: bath,
-      BuildingHeatedArea: livableArea,
+      BuildingBaseArea,
+      BuildingActualArea,
+      BuildingHeatedArea,
+      BuildingEffectiveArea,
       FloorCount: floors,
       YearBuilt: year_built,
       SubdivisionDescription: neighborhood,
     } = PropertyInfo
+
+    const evaluateValue = (value) =>
+      value !== null && typeof value === 'number' && value > 0
+
+    const getPropertySqFeet = () => {
+      if (evaluateValue(BuildingHeatedArea)) {
+        return BuildingHeatedArea
+      }
+      if (evaluateValue(BuildingEffectiveArea)) {
+        return BuildingEffectiveArea
+      }
+      if (evaluateValue(BuildingBaseArea)) {
+        return BuildingBaseArea
+      }
+      if (evaluateValue(BuildingActualArea)) {
+        return BuildingActualArea
+      }
+
+      return null
+    }
+
     return res.status(200).json({
       beds,
       halfBath,
       bath,
-      livableArea,
+      livableArea: getPropertySqFeet(),
       floors,
       year_built,
       status: 200,
