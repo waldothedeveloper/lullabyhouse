@@ -112,7 +112,6 @@ export const ContactInformation = ({ register, errors, setValue }) => {
           Phone Number
         </label>
         <div className="mt-1">
-          {/* TODO: check later if we can change this pattern for the phone, this one looks like a global one */}
           <input
             placeholder="(555) 444-3322"
             maxLength={14}

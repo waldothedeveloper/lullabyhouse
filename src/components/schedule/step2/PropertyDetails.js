@@ -145,13 +145,17 @@ export const PropertyDetails = ({ propertyDetails }) => {
       <PropertyDisclaimer />
     </section>
   ) : (
-    <section className="rounded-xl bg-slate-100 py-12 shadow-lg dark:bg-slate-700 sm:py-16 lg:py-20">
-      <div className="mx-auto max-w-7xl animate-pulse px-4 sm:px-6 lg:px-8">
+    <section className="rounded-xl bg-slate-100 py-12 shadow-lg dark:bg-slate-500 sm:py-16 lg:py-20">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="max-w-md">
-          <h2 className="h-2 w-full rounded bg-slate-400 text-3xl font-bold text-slate-800 dark:bg-slate-800" />
-          <p className="mt-4 h-2 w-56 rounded bg-slate-400 text-base font-medium text-slate-500 dark:bg-slate-800" />
+          <h2 className="w-full text-3xl font-bold text-slate-800 dark:text-slate-50">
+            Your property details
+          </h2>
+          <p className="mt-4 text-base font-medium text-slate-500 dark:text-slate-50">
+            The details will appear here once we have your property address.
+          </p>
         </div>
-        <div className="mt-12 grid grid-cols-2 gap-8 sm:gap-x-12 sm:gap-y-10">
+        <div className="mt-12 grid animate-pulse grid-cols-2 gap-8 sm:gap-x-12 sm:gap-y-10">
           <div className="relative sm:flex sm:items-center">
             <div className="relative">
               <div className="h-1 w-24 bg-slate-400 font-bold text-slate-800 dark:bg-slate-800 dark:text-slate-800" />
